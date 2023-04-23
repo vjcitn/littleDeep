@@ -1,0 +1,106 @@
+---
+title: "Deep Learning excursion 0: Based on ISLR online book"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Deep Learning excursion 0: Based on ISLR online book}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+The "ISLR book" by James, Witten, Hastie and Tibshirani
+is available [online](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf).
+There are useful discussions of deep learning and its applications
+in Chapter 10.  In this little vignette we simplify a little
+some of the computing related to the lab on convolutional neural networks
+bit of the computing for the lab 10.9.3 in the second edition.
+
+# The data
+
+The following code will acquire a representation of 60000
+images that have been classified into 100 categories.
+```{r getkeras, message=FALSE}
+library(keras)
+cifar100 <- dataset_cifar100()
+names(cifar100)
+names(cifar100$train)
+length(cifar100$train$y)
+length(cifar100$test$y)
+```
+
+The representations of the images are 32 x 32 x 3 -- the
+plane is 32 x 32 and at each point the red, green and blue
+intensities are recorded in values from 0 to 255.  
+
+The labeling of the images in the `cifar100` is limited to
+numeric coding from 0 to 99.  To decode we need some
+metadata about the resource, and this can be obtained
+conveniently from [huggingface](https://huggingface.co/datasets/cifar100/blob/main/dataset_infos.json).
+
+```{r getmeta,message=FALSE}
+library(jsonlite)
+cifmeta = fromJSON("cif.json")
+labs = cifmeta[[1]]$features$fine_label$names
+head(labs)
+```
+
+Here is a little code that allows us to see a few of
+the images and their associated labels.
+
+```{r lkdat}
+mypl = function(x, use="train", ...) 
+   plot(as.raster(cifar100[[use]][["x"]][x,,,], max=255), ...)
+labinds = cifar100[[1]][[2]]+1
+par(mfrow=c(5,5), mar=c(0,0,3,0))
+for (i in 1:25) { mypl(i); title(labs[labinds[i]]) }
+```
+
+# The model
+
+## Restoration, structure, history
+
+We fit the model according to the code in the appendix.  We
+can restore it from disk as follows:
+
+```{r getmod}
+model = load_model_hdf5("cifar100.keras.h5")
+model
+```
+
+The history of fitting was recorded:
+```{r lkhist}
+load("cifar100_history.rda")
+cifar100_history
+plot(cifar100_history)
+```
+
+## External validation accuracy
+
+ISLR had some references to `predict_class` and `accuracy`
+that are now defunct.
+```{r lkacc}
+accuracy <- function(pred, truth)
+  mean(drop(as.numeric(pred)) == drop(truth))
+testPreds <- model %>% predict(cifar100$test$x) %>% k_argmax()
+testPreds %>% accuracy(cifar100$test$y)
+kp <- which(as.numeric(testPreds) == cifar100$test$y)[1:25]
+```
+
+It is peculiar that the external validation accuracy is
+so much lower than that reported in the history.  Let's 
+look at some of the ones that were correctly predicted.
+
+```{r morepl}
+par(mfrow=c(5,5), mar=c(0,0,3,0))
+for (i in kp) {mypl(i, use="test"); title(labs[cifar100$test$y+1][i])}
+```
+
+The images with correctly predicted classes seem properly identified.

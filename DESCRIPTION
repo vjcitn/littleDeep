@@ -1,0 +1,21 @@
+Package: littleDeep
+Date: 2023-04-21
+Title: Small illustration of deep learning based on ISLR lab
+Version: 0.0.0
+Authors@R: 
+    c(person(
+        "Vincent", "Carey", role = c("aut", "cre"),
+        email = "stvjc@channing.harvard.edu",
+        comment = c(ORCID = "0000-0003-4046-0063")
+     )
+    )
+Description: Small illustration of deep learning based on ISLR lab.  The
+	point is to encapsulate and render checkable some of the basic
+	code in lab 10.9.3 of James, Witten, Hastie and Tibshirani.
+License: Artistic-2.0
+Encoding: UTF-8
+Depends: R (>= 4.2), dplyr, keras, magrittr
+Suggests: knitr, testthat
+VignetteBuilder: knitr
+biocViews: Infrastructure
+RoxygenNote: 7.2.3
