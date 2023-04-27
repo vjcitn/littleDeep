@@ -4,7 +4,14 @@
 \alias{run_cifar100}
 \title{run the ISLR CNN for CIFAR100 data}
 \usage{
-run_cifar100()
+run_cifar100(nEpochs = 30, batchSize = 128, valSplit = 0.2)
+}
+\arguments{
+\item{nEpochs}{numeric(1) defaults to 30}
+
+\item{batchSize}{numeric(1) defaults to 128}
+
+\item{valSplit}{numeric(1) defaults to 0.2}
 }
 \value{
 a list with elements history and model
@@ -13,5 +20,7 @@ a list with elements history and model
 run the ISLR CNN for CIFAR100 data
 }
 \note{
-Takes 15+ minutes on a CPU
+Takes 15+ minutes on a CPU, with default settings.  This
+is derived from Introduction to Statistical Learning with R by
+G. James, D. Witten, T. Hastie, R. Tibshirani.
 }

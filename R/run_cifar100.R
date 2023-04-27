@@ -1,9 +1,14 @@
 #' run the ISLR CNN for CIFAR100 data
 #' @import keras
+#' @param nEpochs numeric(1) defaults to 30
+#' @param batchSize numeric(1) defaults to 128
+#' @param valSplit numeric(1) defaults to 0.2
 #' @return a list with elements history and model
-#' @note Takes 15+ minutes on a CPU
+#' @note Takes 15+ minutes on a CPU, with default settings.  This
+#' is derived from Introduction to Statistical Learning with R by
+#' G. James, D. Witten, T. Hastie, R. Tibshirani.
 #' @export
-run_cifar100 = function() {
+run_cifar100 = function(nEpochs=30, batchSize=128, valSplit=.2) {
 cifar100 = dataset_cifar100()
 model <- keras_model_sequential() %>%
   layer_conv_2d(
@@ -34,8 +39,9 @@ model <- keras_model_sequential() %>%
 
  model %>% compile ( loss = "categorical_crossentropy" ,
     optimizer = optimizer_rmsprop () , metrics = c ( "accuracy" ) )
- history <- model %>% fit ( cifar100$train$x/255 , to_categorical(cifar100$train$y,100) , epochs = 30 ,
-      batch_size = 128 , validation_split = 0.2)
+ history <- model %>% fit ( cifar100$train$x/255 , to_categorical(cifar100$train$y,100) , 
+      epochs = nEpochs ,
+      batch_size = batchSize , validation_split = valSplit)
  list(model=model, history=history)
 }
 

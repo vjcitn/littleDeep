@@ -12,3 +12,6 @@ a keras model reference
 \description{
 restore a fitted model for CIFAR100
 }
+\note{
+Metadata about the input data are available in extdata/cif.json.
+}

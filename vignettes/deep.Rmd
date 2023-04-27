@@ -14,6 +14,10 @@ output:
     toc: yes
 ---
 
+```{r setup,message=FALSE,echo=FALSE}
+library(littleDeep)
+```
+
 # Introduction
 
 The "ISLR book" by James, Witten, Hastie and Tibshirani
@@ -47,7 +51,7 @@ conveniently from [huggingface](https://huggingface.co/datasets/cifar100/blob/ma
 
 ```{r getmeta,message=FALSE}
 library(jsonlite)
-cifmeta = fromJSON("cif.json")
+cifmeta = fromJSON(system.file("extdata", "cif.json", package="littleDeep"))
 labs = cifmeta[[1]]$features$fine_label$names
 head(labs)
 ```
@@ -71,13 +75,13 @@ We fit the model according to the code in the appendix.  We
 can restore it from disk as follows:
 
 ```{r getmod}
-model = load_model_hdf5("cifar100.keras.h5")
+model = load_model_hdf5(system.file("extdata", "cifar100.keras.h5", package="littleDeep"))
 model
 ```
 
 The history of fitting was recorded:
 ```{r lkhist}
-load("cifar100_history.rda")
+data(cifar100_history)
 cifar100_history
 plot(cifar100_history)
 ```
