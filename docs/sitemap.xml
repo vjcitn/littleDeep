@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/404.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/deep.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/littleDeep.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/cifar100_history.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/get_fitted_cfar100.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/run_cifar100.html</loc>
+  </url>
+</urlset>

@@ -1,0 +1,22 @@
+ls(2)
+search()
+ls(3)
+args(run_cifar100)
+mod2 = run_cifar100(valSplit=.4)
+testPreds2 <- mod2 %>% predict(cifar100$test$x) %>% k_argmax() 
+keras::predict
+mod2
+testPreds2 <- mod2$model %>% predict(cifar100$test$x) %>% k_argmax() 
+testPreds2 %>% accuracy(cifar100$test$y) 
+mod3 = run_cifar100(valSplit=.6)
+testPreds3 <- mod3$model %>% predict(cifar100$test$x) %>% k_argmax() 
+testPreds3 %>% accuracy(cifar100$test$y) 
+mod2
+model
+mod
+mod1
+model1
+mod2
+mod3
+plot(mod3$history)
+savehistory(file="do3.hist.txt")
