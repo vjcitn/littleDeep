@@ -108,3 +108,50 @@ for (i in kp) {mypl(i, use="test"); title(labs[cifar100$test$y+1][i])}
 ```
 
 The images with correctly predicted classes seem properly identified.
+
+Exercise: Present 4 incorrectly labeled images.  How "far off" are the labels?
+
+Exercise: Which image types in the test set are most frequently correctly labeled?
+
+# Appendix: model specification
+
+The following code specifies the model, and is part
+of the `run_cifar100` function body in littleDeep.
+The code is taken almost verbatim from ISLR, with
+variables `nEpochs`, `batchSize` and `valSplit`
+configurable by the user of `run_cifar100`.
+```
+model <- keras_model_sequential() %>%
+  layer_conv_2d(
+    filters = 32, kernel_size = c(3, 3),
+    padding = "same", activation = "relu",
+    input_shape = c(32, 32, 3)
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_conv_2d(
+    filters = 64, kernel_size = c(3, 3),
+    padding = "same", activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_conv_2d(
+    filters = 128, kernel_size = c(3, 3),
+    padding = "same", activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_conv_2d(
+    filters = 256, kernel_size = c(3, 3),
+    padding = "same", activation = "relu"
+  ) %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_flatten() %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 512, activation = "relu") %>%
+  layer_dense(units = 100, activation = "softmax")
+
+ model %>% compile ( loss = "categorical_crossentropy" ,
+    optimizer = optimizer_rmsprop () , metrics = c ( "accuracy" ) )
+ history <- model %>% fit ( cifar100$train$x/255 , to_categorical(cifar100$train$y,100) ,
+      epochs = nEpochs ,
+      batch_size = batchSize , validation_split = valSplit)
+```
+

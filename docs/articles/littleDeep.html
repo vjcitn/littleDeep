@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">littleDeep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
       </span>
     </div>
 
@@ -58,7 +58,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/vjcitn/littleDeep/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -74,9 +81,9 @@
       <h1 data-toc-skip>Getting started with littleDeep</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">April 28, 2023</h4>
+            <h4 data-toc-skip class="date">April 30, 2023</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/vjcitn/littleDeep/blob/HEAD/vignettes/littleDeep.Rmd"><code>vignettes/littleDeep.Rmd</code></a></small>
       <div class="hidden name"><code>littleDeep.Rmd</code></div>
 
     </div>
@@ -126,7 +133,7 @@
 <div class="section level2">
 <h2 id="chapter-10-convolutional-neural-net-with-torch">Chapter 10 Convolutional Neural Net with torch<a class="anchor" aria-label="anchor" href="#chapter-10-convolutional-neural-net-with-torch"></a>
 </h2>
-<p>At the end of April 2023 I noted that the authors provide a new torch-based approach. The code is now</p>
+<p>At the end of April 2023 I noted that the authors of ISLR provide a new torch-based approach. The <a href="https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch10-deeplearning-lab-torch.Rmd" class="external-link">code is now</a></p>
 <pre><code><span><span class="va">conv_block</span> <span class="op">&lt;-</span> <span class="fu">nn_module</span><span class="op">(</span></span>
 <span>  initialize <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">in_channels</span>, <span class="va">out_channels</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">self</span><span class="op">$</span><span class="va">conv</span> <span class="op">&lt;-</span> <span class="fu">nn_conv2d</span><span class="op">(</span></span>
@@ -188,6 +195,7 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html" class="external-link">evaluate</a></span><span class="op">(</span><span class="va">fitted</span>, <span class="va">test_ds</span><span class="op">)</span></span></code></pre>
 <p><a href="https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch10-deeplearning-lab-torch.Rmd" class="external-link">This Rmd</a> reports the accuracy at 36%.</p>
+<p>To “get started” you can install littleDeep using <code>devtools::install_github("vjcitn/littleDeep", dependencies=TRUE)</code>, and run the code in the “article” entitled “Deep Learning excursion 0”.</p>
 </div>
   </div>
 

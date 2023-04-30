@@ -79,8 +79,8 @@ take advantage of GPUs.
 
 # Chapter 10 Convolutional Neural Net with torch
 
-At the end of April 2023 I noted that the authors provide a new
-torch-based approach.  The code is now
+At the end of April 2023 I noted that the authors of ISLR provide a new
+torch-based approach.  The [code is now](https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch10-deeplearning-lab-torch.Rmd)
 ```
 conv_block <- nn_module(
   initialize = function(in_channels, out_channels) {
@@ -148,3 +148,6 @@ evaluate(fitted, test_ds)
 ```
 [This Rmd](https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch10-deeplearning-lab-torch.Rmd) 
 reports the accuracy at 36%.
+
+To "get started" you can install littleDeep using `devtools::install_github("vjcitn/littleDeep",
+dependencies=TRUE)`, and run the code in the "article" entitled "Deep Learning excursion 0".

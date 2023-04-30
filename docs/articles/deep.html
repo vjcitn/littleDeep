@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">littleDeep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
       </span>
     </div>
 
@@ -58,7 +58,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/vjcitn/littleDeep/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -74,9 +81,9 @@
       <h1 data-toc-skip>Deep Learning excursion 0: Based on ISLR online book</h1>
                         <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">April 28, 2023</h4>
+            <h4 data-toc-skip class="date">April 30, 2023</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/vjcitn/littleDeep/blob/HEAD/vignettes/deep.Rmd"><code>vignettes/deep.Rmd</code></a></small>
       <div class="hidden name"><code>deep.Rmd</code></div>
 
     </div>
@@ -187,7 +194,46 @@
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">kp</span><span class="op">)</span> <span class="op">{</span><span class="fu">mypl</span><span class="op">(</span><span class="va">i</span>, use<span class="op">=</span><span class="st">"test"</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="va">labs</span><span class="op">[</span><span class="va">cifar100</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span></code></pre></div>
 <p><img src="deep_files/figure-html/morepl-1.png" width="700"></p>
 <p>The images with correctly predicted classes seem properly identified.</p>
+<p>Exercise: Present 4 incorrectly labeled images. How “far off” are the labels?</p>
+<p>Exercise: Which image types in the test set are most frequently correctly labeled?</p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="appendix-model-specification">Appendix: model specification<a class="anchor" aria-label="anchor" href="#appendix-model-specification"></a>
+</h2>
+<p>The following code specifies the model, and is part of the <code>run_cifar100</code> function body in littleDeep. The code is taken almost verbatim from ISLR, with variables <code>nEpochs</code>, <code>batchSize</code> and <code>valSplit</code> configurable by the user of <code>run_cifar100</code>.</p>
+<pre><code><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/keras_model_sequential.html" class="external-link">keras_model_sequential</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_conv_2d.html" class="external-link">layer_conv_2d</a></span><span class="op">(</span></span>
+<span>    filters <span class="op">=</span> <span class="fl">32</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    padding <span class="op">=</span> <span class="st">"same"</span>, activation <span class="op">=</span> <span class="st">"relu"</span>,</span>
+<span>    input_shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">32</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_max_pooling_2d.html" class="external-link">layer_max_pooling_2d</a></span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_conv_2d.html" class="external-link">layer_conv_2d</a></span><span class="op">(</span></span>
+<span>    filters <span class="op">=</span> <span class="fl">64</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    padding <span class="op">=</span> <span class="st">"same"</span>, activation <span class="op">=</span> <span class="st">"relu"</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_max_pooling_2d.html" class="external-link">layer_max_pooling_2d</a></span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_conv_2d.html" class="external-link">layer_conv_2d</a></span><span class="op">(</span></span>
+<span>    filters <span class="op">=</span> <span class="fl">128</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    padding <span class="op">=</span> <span class="st">"same"</span>, activation <span class="op">=</span> <span class="st">"relu"</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_max_pooling_2d.html" class="external-link">layer_max_pooling_2d</a></span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_conv_2d.html" class="external-link">layer_conv_2d</a></span><span class="op">(</span></span>
+<span>    filters <span class="op">=</span> <span class="fl">256</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    padding <span class="op">=</span> <span class="st">"same"</span>, activation <span class="op">=</span> <span class="st">"relu"</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_max_pooling_2d.html" class="external-link">layer_max_pooling_2d</a></span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_flatten.html" class="external-link">layer_flatten</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dropout.html" class="external-link">layer_dropout</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html" class="external-link">layer_dense</a></span><span class="op">(</span>units <span class="op">=</span> <span class="fl">512</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html" class="external-link">layer_dense</a></span><span class="op">(</span>units <span class="op">=</span> <span class="fl">100</span>, activation <span class="op">=</span> <span class="st">"softmax"</span><span class="op">)</span></span>
+<span></span>
+<span> <span class="va">model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/compile.html" class="external-link">compile</a></span> <span class="op">(</span> loss <span class="op">=</span> <span class="st">"categorical_crossentropy"</span> ,</span>
+<span>    optimizer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/optimizer_rmsprop.html" class="external-link">optimizer_rmsprop</a></span> <span class="op">(</span><span class="op">)</span> , metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span> <span class="op">(</span> <span class="st">"accuracy"</span> <span class="op">)</span> <span class="op">)</span></span>
+<span> <span class="va">history</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/fit.html" class="external-link">fit</a></span> <span class="op">(</span> <span class="va">cifar100</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">/</span><span class="fl">255</span> , <span class="fu"><a href="https://rdrr.io/pkg/keras/man/to_categorical.html" class="external-link">to_categorical</a></span><span class="op">(</span><span class="va">cifar100</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">y</span>,<span class="fl">100</span><span class="op">)</span> ,</span>
+<span>      epochs <span class="op">=</span> <span class="va">nEpochs</span> ,</span>
+<span>      batch_size <span class="op">=</span> <span class="va">batchSize</span> , validation_split <span class="op">=</span> <span class="va">valSplit</span><span class="op">)</span></span></code></pre>
 </div>
   </div>
 
