@@ -16,6 +16,7 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.2), dplyr, keras, magrittr
 Suggests: knitr, testthat
+Imports: raster, shiny, OpenImageR, jpeg
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.2.3

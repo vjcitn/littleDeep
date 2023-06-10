@@ -1,5 +1,7 @@
 #' run the ISLR CNN for CIFAR100 data
 #' @import keras
+#' @import dplyr
+#' @import magrittr
 #' @param nEpochs numeric(1) defaults to 30
 #' @param batchSize numeric(1) defaults to 128
 #' @param valSplit numeric(1) defaults to 0.2
