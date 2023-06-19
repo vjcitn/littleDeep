@@ -46,12 +46,11 @@ load_jpeg = function(x, y, siz=64, dim=c(64,64,3)) {
 
 
 #' produce a raster image of a random "triangle" in 64 x 64 plane
-#' @import raster
 #' @export
 rantri = function() {
   co = sample(1:64, size=6)
   t = maketri( x1=co[1], y1=co[2], x2=co[3], y2=co[4], x3=co[5], y3=co[6])
-  raster::rasterImage(load_jpeg(t$x, t$y, siz=sample(c(20,40,60), size=1)), 0, 0, 1, 1, interpolate=FALSE)
+  graphics::rasterImage(load_jpeg(t$x, t$y, siz=sample(c(20,40,60), size=1)), 0, 0, 1, 1, interpolate=FALSE)
 }
 #
 #   m1 = (y2 - y1)/(x2-x1)

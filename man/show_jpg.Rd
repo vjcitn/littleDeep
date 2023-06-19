@@ -11,7 +11,7 @@ show_jpg(fn, main = "jpeg", ...)
 
 \item{main}{character(1) title defaults to 'jpeg'}
 
-\item{\dots}{passed to raster::rasterImage}
+\item{\dots}{passed to graphics::rasterImage}
 }
 \value{
 rasterImage is called

@@ -20,6 +20,6 @@ import, resize and rotate a JPEG that should have been produced in square mode
 }
 \examples{
 appl = system.file("jpegs", "oneBigApple.jpg", package="littleDeep")
-im = process_image(appl, angle=90)
-plot(as.raster(im))
+im = process_jpg(appl, angle=90)
+plot(grDevices::as.raster(im))
 }

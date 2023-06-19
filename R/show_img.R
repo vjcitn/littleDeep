@@ -2,13 +2,13 @@
 #' @import jpeg
 #' @param fn character(1) path to jpg
 #' @param main character(1) title defaults to 'jpeg'
-#' @param \dots passed to raster::rasterImage
+#' @param \dots passed to graphics::rasterImage
 #' @return rasterImage is called
 #' @export
 show_jpg = function(fn, main="jpeg", ...) {
  img = jpeg::readJPEG(fn)
  plot(0,0, ylim=c(0,1), xlim=c(0,1), type="n", axes=FALSE, main=main)
- raster::rasterImage(img, 0, 0, 1, 1, ...)
+ graphics::rasterImage(img, 0, 0, 1, 1, ...)
 }
  
 #zero_out = function(img, plane=1) {
@@ -25,7 +25,7 @@ show_channels = function(fn, ...) {
  show_jpg(fn, main="full")
  for (i in 1:3) {
    plot(0,0, ylim=c(0,1), xlim=c(0,1), type="n", axes=FALSE, main=sprintf("plane %d", i))
-   rasterImage(keep_plane(img, i), 0, 0, 1, 1)
+   graphics::rasterImage(keep_plane(img, i), 0, 0, 1, 1)
  }
 }
 
@@ -45,7 +45,7 @@ monochromize = function(fn, img=NULL, thresh, rel=">",
 }
  
 #' app to demonstrate filtering of a jpeg
-#' @import OpenImageR
+#' @importFrom OpenImageR rotateImage
 #' @import shiny
 #' @export
 chkthres = function() {
@@ -82,11 +82,11 @@ chkthres = function() {
    d = dim(mc)
    mc[mc< .02] = 1
    mc = array(mc,dim=d)
-   raster::rasterImage(mc, 0,0,1,1)
+   graphics::rasterImage(mc, 0,0,1,1)
    })
   output$view2 = renderPlot({
    img = getimg()
-   raster::rasterImage(img, 0,0,1,1)
+   graphics::rasterImage(img, 0,0,1,1)
    })
   output$downloadData <- shiny::downloadHandler(
      filename = function() {
