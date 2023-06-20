@@ -9,6 +9,9 @@
 #' @note Takes 15+ minutes on a CPU, with default settings.  This
 #' is derived from Introduction to Statistical Learning with R by
 #' G. James, D. Witten, T. Hastie, R. Tibshirani.
+#' @examples
+#' r1 = run_cifar100(nEpochs=3)
+#' plot(r1$history)
 #' @export
 run_cifar100 = function(nEpochs=30, batchSize=128, valSplit=.2) {
 cifar100 = dataset_cifar100()

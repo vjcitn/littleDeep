@@ -2,10 +2,19 @@
 % Please edit documentation in R/maketri.R
 \name{rantri}
 \alias{rantri}
-\title{produce a raster image of a random "triangle" in 64 x 64 plane}
+\title{produce coordinates of a random "triangle" in 64 x 64 plane}
 \usage{
-rantri()
+rantri(npts = 50)
+}
+\arguments{
+\item{npts}{numeric(1) passed to `maketri`}
 }
 \description{
-produce a raster image of a random "triangle" in 64 x 64 plane
+produce coordinates of a random "triangle" in 64 x 64 plane
+}
+\examples{
+plot(0,0,type="n",xlim=c(0,1), ylim=c(0,1))
+set.seed(2345)
+tt = rantri()
+graphics::rasterImage(load_jpeg(tt$x, tt$y, siz=sample(c(20,40,60), size=1)), 0, 0, 1, 1, interpolate=FALSE)
 }

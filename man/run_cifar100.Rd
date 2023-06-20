@@ -24,3 +24,7 @@ Takes 15+ minutes on a CPU, with default settings.  This
 is derived from Introduction to Statistical Learning with R by
 G. James, D. Witten, T. Hastie, R. Tibshirani.
 }
+\examples{
+r1 = run_cifar100(nEpochs=3)
+plot(r1$history)
+}

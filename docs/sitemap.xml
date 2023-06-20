@@ -19,15 +19,39 @@
     <loc>https://github.com/vjcitn/littleDeep/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/chkthres.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/cifar100_history.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/get_fitted_cfar100.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/get_fitted_cifar100.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/getline.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/load_jpeg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/maketri.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/process_jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/rantri.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/run_cifar100.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/show_jpg.html</loc>
   </url>
 </urlset>

@@ -23,3 +23,6 @@ list with elements x, y
 \description{
 produce sequence of points on a line between two points
 }
+\examples{
+getline(0,0,3,5)
+}
