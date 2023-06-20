@@ -1,5 +1,10 @@
 
+#' container for 4D image array (index,x,y,z), typically (,32,32,3)
+#' @export
 setClass("ImageArray", representation(arr="array", types="character"))
+
+#' display information about ImageArray instance
+#' @export
 setMethod("show", "ImageArray", function(object) {
   dims = dim(object@arr)
   cat(sprintf("ImageArray instance with %d images, each %d x %d x %d\n", dims[1],
@@ -9,11 +14,24 @@ setMethod("show", "ImageArray", function(object) {
   rng = range(object@arr)
   cat(sprintf(" Array elements range from %f to %f.\n", rng[1], rng[2]))
 })
+
+#' extract numerical array
+#' @export
 setGeneric("getArray", function(iarr) standardGeneric("getArray"))
+#' extract numerical array
+#' @export
 setMethod("getArray", "ImageArray", function(iarr) slot(iarr, "arr"))
+#' extract vector of labels
+#' @export
 setGeneric("getTypes", function(iarr) standardGeneric("getTypes"))
+#' extract vector of labels
+#' @export
 setMethod("getTypes", "ImageArray", function(iarr) slot(iarr, "types"))
 
+#' constructor for ImageArray
+#' @param arr 4D array
+#' @param types character()
+#' @export
 ImageArray = function(arr, types) {
   stopifnot(length(types) == dim(arr)[1])
   new("ImageArray", arr=arr, types=types)
@@ -34,6 +52,10 @@ ImageArray = function(arr, types) {
 #train = ImageArray(ciftrain, ciflabels)
 #train
 
+#' produce labeled 3x3 array of images via plot.raster
+#' @param iarr ImageArray instance
+#' @param \dots not used
+#' @export
 preview = function(iarr, ...) {
   par(mfrow=c(3,3), mar=c(2,2,2,4))
   mx = max(getArray(iarr))
@@ -45,12 +67,21 @@ preview = function(iarr, ...) {
   NULL
 }
 
+#' return an ImageArray with images restricted to specific types
+#' @param iarr ImageArray instance
+#' @param tvec character vector of types to retain
+#' @export
 filterByType = function(iarr, tvec) {
  tys = getTypes(iarr)
+ stopifnot(all(tvec %in% tys))
  inds = which(tys %in% tvec)
  new("ImageArray", arr=getArray(iarr)[inds,,,], types=tys[inds])
 }
 
+#' linearize data in an image to a single vector for each image in an 
+#' ImageArray instance
+#' @param iarr ImageArray instance
+#' @export
 flattenToMatrix = function(iarr) {
   dims = dim(getArray(iarr))
   mydatt = matrix(1, nrow=dims[1], ncol=prod(dims[-1]))
