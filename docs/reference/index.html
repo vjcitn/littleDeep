@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">littleDeep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.9</span>
       </span>
     </div>
 
@@ -36,6 +36,12 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/deep.html">Deep Learning excursion 0: Based on ISLR online book</a>
+    </li>
+    <li>
+      <a href="../articles/geom_shapes.html">ISLR's CNN for classifying geometric shapes</a>
+    </li>
+    <li>
+      <a href="../articles/three_cl.html">ISLR's CNN for classifying a subset of CIFAR100 images</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -61,6 +67,14 @@
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="ImageArray-class.html">ImageArray-class</a></code> </p>
+        </td>
+        <td><p>container for 4D image array (index,x,y,z), typically (,32,32,3)</p></td>
+      </tr><tr><td>
+          <p><code><a href="ImageArray.html">ImageArray()</a></code> </p>
+        </td>
+        <td><p>constructor for ImageArray</p></td>
+      </tr><tr><td>
           <p><code><a href="chkthres.html">chkthres()</a></code> </p>
         </td>
         <td><p>app to demonstrate filtering of a jpeg</p></td>
@@ -68,6 +82,35 @@
           <p><code><a href="cifar100_history.html">cifar100_history</a></code> </p>
         </td>
         <td><p>a history object for keras fit for cifar100 data, using the ISLR tuning settings</p></td>
+      </tr><tr><td>
+          <p><code><a href="eval_model.html">eval_model()</a></code> </p>
+        </td>
+        <td><p>estimate accuracy of fitted model predictions for a given ImageArray</p></td>
+      </tr><tr><td>
+          <p><code><a href="filterByType.html">filterByType()</a></code> </p>
+        </td>
+        <td><p>return an ImageArray with images restricted to specific types</p></td>
+      </tr><tr><td>
+          <p><code><a href="flattenToMatrix.html">flattenToMatrix()</a></code> </p>
+        </td>
+        <td><p>linearize data in an image to a single vector for each image in an 
+ImageArray instance</p></td>
+      </tr><tr><td>
+          <p><code><a href="getArray-ImageArray-method.html">getArray(<i>&lt;ImageArray&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>extract numerical array</p></td>
+      </tr><tr><td>
+          <p><code><a href="getArray.html">getArray()</a></code> </p>
+        </td>
+        <td><p>extract numerical array</p></td>
+      </tr><tr><td>
+          <p><code><a href="getTypes-ImageArray-method.html">getTypes(<i>&lt;ImageArray&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>extract vector of labels</p></td>
+      </tr><tr><td>
+          <p><code><a href="getTypes.html">getTypes()</a></code> </p>
+        </td>
+        <td><p>extract vector of labels</p></td>
       </tr><tr><td>
           <p><code><a href="get_fitted_cifar100.html">get_fitted_cifar100()</a></code> </p>
         </td>
@@ -77,11 +120,25 @@
         </td>
         <td><p>produce sequence of points on a line between two points</p></td>
       </tr><tr><td>
+          <p><code><a href="islr_cnn.html">islr_cnn()</a></code> </p>
+        </td>
+        <td><p>use the CNN in Introduction to Statistical Learning with R on an ImageArray instance</p></td>
+      </tr><tr><td>
           <p><code><a href="load_jpeg.html">load_jpeg()</a></code> </p>
         </td>
         <td><p>this function defines a 3-dimensional array with given dimensions
 and sets all elements to 1 except those with element indices given by x and y,
 which are set to zero</p></td>
+      </tr><tr><td>
+          <p><code><a href="makecirc.html">makecirc()</a></code> </p>
+        </td>
+        <td><p>make a discrete image of a circle</p></td>
+      </tr><tr><td>
+          <p><code><a href="makequad.html">makequad()</a></code> </p>
+        </td>
+        <td><p>produce a list of x and y coordinates of "discrete lines" with
+specified numbers of points, forming a quadrilateral with vertices given
+by input coordinates</p></td>
       </tr><tr><td>
           <p><code><a href="maketri.html">maketri()</a></code> </p>
         </td>
@@ -89,21 +146,41 @@ which are set to zero</p></td>
 specified numbers of points, forming a triangle with vertices given
 by input coordinates</p></td>
       </tr><tr><td>
+          <p><code><a href="preview.html">preview()</a></code> </p>
+        </td>
+        <td><p>produce labeled 3x3 array of images via plot.raster</p></td>
+      </tr><tr><td>
           <p><code><a href="process_jpg.html">process_jpg()</a></code> </p>
         </td>
         <td><p>import, resize and rotate a JPEG that should have been produced in square mode</p></td>
       </tr><tr><td>
+          <p><code><a href="rancirc.html">rancirc()</a></code> </p>
+        </td>
+        <td><p>produce coordinates for a randomly positioned circle in a square plane</p></td>
+      </tr><tr><td>
+          <p><code><a href="ranquad.html">ranquad()</a></code> </p>
+        </td>
+        <td><p>produce coordinates of a random "quadrilateral" in 64 x 64 plane</p></td>
+      </tr><tr><td>
           <p><code><a href="rantri.html">rantri()</a></code> </p>
         </td>
-        <td><p>produce a raster image of a random "triangle" in 64 x 64 plane</p></td>
+        <td><p>produce coordinates of a random "triangle" in 64 x 64 plane</p></td>
       </tr><tr><td>
           <p><code><a href="run_cifar100.html">run_cifar100()</a></code> </p>
         </td>
         <td><p>run the ISLR CNN for CIFAR100 data</p></td>
       </tr><tr><td>
+          <p><code><a href="show-ImageArray-method.html">show(<i>&lt;ImageArray&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>display information about ImageArray instance</p></td>
+      </tr><tr><td>
           <p><code><a href="show_jpg.html">show_jpg()</a></code> </p>
         </td>
         <td><p>produce raster image of a jpg file</p></td>
+      </tr><tr><td>
+          <p><code><a href="sub-ImageArray-numeric-missing-missing-method.html">`[`(<i>&lt;ImageArray&gt;</i>,<i>&lt;numeric&gt;</i>,<i>&lt;missing&gt;</i>,<i>&lt;missing&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>simple extraction with bracket</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

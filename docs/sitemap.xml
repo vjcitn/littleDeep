@@ -7,10 +7,16 @@
     <loc>https://github.com/vjcitn/littleDeep/articles/deep.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/geom_shapes.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/articles/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/articles/littleDeep.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/three_cl.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/authors.html</loc>
@@ -19,10 +25,37 @@
     <loc>https://github.com/vjcitn/littleDeep/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/ImageArray-class.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/ImageArray.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/chkthres.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/cifar100_history.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/eval_model.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/filterByType.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/flattenToMatrix.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/getArray-ImageArray-method.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/getArray.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/getTypes-ImageArray-method.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/getTypes.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/get_fitted_cfar100.html</loc>
@@ -37,13 +70,31 @@
     <loc>https://github.com/vjcitn/littleDeep/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/islr_cnn.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/load_jpeg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/makecirc.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/makequad.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/maketri.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/preview.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/process_jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/rancirc.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/ranquad.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/rantri.html</loc>
@@ -52,6 +103,12 @@
     <loc>https://github.com/vjcitn/littleDeep/reference/run_cifar100.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/show-ImageArray-method.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/show_jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/sub-ImageArray-numeric-missing-missing-method.html</loc>
   </url>
 </urlset>

@@ -4,10 +4,12 @@
 \alias{rantri}
 \title{produce coordinates of a random "triangle" in 64 x 64 plane}
 \usage{
-rantri(npts = 50)
+rantri(npts = 50, side_plane = 64)
 }
 \arguments{
 \item{npts}{numeric(1) passed to `maketri`}
+
+\item{side_plane}{numeric(1) length of square side used}
 }
 \description{
 produce coordinates of a random "triangle" in 64 x 64 plane

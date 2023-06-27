@@ -12,7 +12,9 @@ setMethod("show", "ImageArray", function(object) {
   cat(" Image types: ")
   cat(Biobase::selectSome(unique(object@types)), "\n")
   rng = range(object@arr)
-  cat(sprintf(" Array elements range from %f to %f.\n", rng[1], rng[2]))
+  r3 = function(x) round(x,3)
+  cat(sprintf(" Array elements range from %f to %f.\n", r3(rng[1]), 
+     r3(rng[2])))
 })
 
 #' extract numerical array
@@ -82,10 +84,23 @@ filterByType = function(iarr, tvec) {
 #' ImageArray instance
 #' @param iarr ImageArray instance
 #' @export
-flattenToMatrix = function(iarr) {
-  dims = dim(getArray(iarr))
-  mydatt = matrix(1, nrow=dims[1], ncol=prod(dims[-1]))
-  for (i in seq_len(dims[1])) mydatt[i,] = as.numeric(getArray(iarr[i,,,]))
-  mydatt
+flattenToMatrix = function (iarr) 
+{
+    thearr = getArray(iarr)
+    dims = dim(thearr)
+    mydatt = matrix(1, nrow = dims[1], ncol = prod(dims[-1]))
+    for (i in seq_len(dims[1])) mydatt[i, ] = as.numeric(thearr[i, 
+        , , ])
+    mydatt
 }
+
+#' simple extraction with bracket
+#' @export
+setMethod("[", c("ImageArray", i="numeric",
+    j="missing", drop="missing"), function(x,i,j,drop) {
+  arr = getArray(x)
+  stopifnot(i <= dim(arr)[1])
+  ty = getTypes(x)
+  new("ImageArray", arr=arr[i,,,], types=ty[i])
+})
 

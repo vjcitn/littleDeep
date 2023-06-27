@@ -55,8 +55,8 @@ scale_to_k = function(x, k=64) {
 #' @export
 load_jpeg = function(x, y, siz=64, dim=c(64,64,3)) {
   stopifnot(length(x)==length(y))
-  stopifnot(all(x > 0))
-  stopifnot(all(y > 0))
+  stopifnot(all(x >= 0))
+  stopifnot(all(y >= 0))
   ans = array(1,dim=dim)
   sx = round(scale_to_k(x, k=siz))
   sy = round(scale_to_k(y, k=siz))
@@ -79,14 +79,15 @@ load_jpeg = function(x, y, siz=64, dim=c(64,64,3)) {
 
 #' produce coordinates of a random "triangle" in 64 x 64 plane
 #' @param npts numeric(1) passed to `maketri`
+#' @param side_plane numeric(1) length of square side used
 #' @examples
 #' plot(0,0,type="n",xlim=c(0,1), ylim=c(0,1))
 #' set.seed(2345)
 #' tt = rantri()
 #' graphics::rasterImage(load_jpeg(tt$x, tt$y, siz=sample(c(20,40,60), size=1)), 0, 0, 1, 1, interpolate=FALSE)
 #' @export
-rantri = function(npts=50) {
-  co = sample(1:64, size=6)
+rantri = function(npts=50, side_plane=64) {
+  co = sample(seq_len(side_plane), size=6)
   maketri( x1=co[1], y1=co[2], x2=co[3], y2=co[4], x3=co[5], y3=co[6], npts=npts)
 }
 #

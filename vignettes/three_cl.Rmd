@@ -1,0 +1,84 @@
+---
+title: "ISLR's CNN for classifying a subset of CIFAR100 images"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{ISLR's CNN for classifying a subset of CIFAR100 images}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+The CIFAR100 data includes some challenging image categories,
+and the demonstration convolutional neural network (CNN) examined
+in the ISLR book has relatively low accuracy over the entire
+set of images.  In this vignette we will use the ImageArray
+class operations to form a subset of images of boys, roses, and chairs,
+train with these images, and assess accuracy.
+
+# Build ImageArray instances
+
+We need two packages:
+```{r makeima,message=FALSE}
+library(littleDeep)
+library(jsonlite)
+```
+
+We'll start by getting the fine-grained image types
+from CIFAR100 JSON.
+
+```{r dojs}
+cifmeta = fromJSON(system.file("extdata", "cif.json", package="littleDeep"))
+labs = cifmeta[[1]]$features$fine_label$names
+head(labs)
+```
+
+Now get the image data and work with the training set
+to produce an ImageArray.
+
+```{r dotra}
+if (!exists("cifdata")) cifdata = dataset_cifar100()
+ciftrain = cifdata[[1]]$x
+ciflabels = labs[cifdata[[1]]$y+1]
+
+train = ImageArray(ciftrain, ciflabels)
+train
+```
+
+Same for the test images:
+```{r dotest}
+ciftest = cifdata[[2]]$x
+ciftestlabs = labs[cifdata[[2]]$y+1]
+test = ImageArray(ciftest, ciftestlabs)
+test
+```
+
+# Filter the ImageArrays to specific image classes
+
+We make a vector of image types of interest and use `filterByType`
+to subset the ImageArrays.
+```{r dofilt}
+littrain = filterByType(train, c("boy", "rose", "chair"))
+littest = filterByType(test, c("boy", "rose", "chair"))
+littrain
+preview(littrain)
+```
+
+# Fit and assess
+
+This can take a few minutes on a CPU.  We use the default
+number of epochs.
+```{r dofit}
+rr = islr_cnn( littrain )
+rr$model
+plot(rr$history)
+
+eval_model(rr$model, littest)
+```

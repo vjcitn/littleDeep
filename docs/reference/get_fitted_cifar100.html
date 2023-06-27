@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">littleDeep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.9</span>
       </span>
     </div>
 
@@ -36,6 +36,12 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/deep.html">Deep Learning excursion 0: Based on ISLR online book</a>
+    </li>
+    <li>
+      <a href="../articles/geom_shapes.html">ISLR's CNN for classifying geometric shapes</a>
+    </li>
+    <li>
+      <a href="../articles/three_cl.html">ISLR's CNN for classifying a subset of CIFAR100 images</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -80,9 +86,28 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mod</span> <span class="op">=</span> <span class="fu">get_fitted_cifar100</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_fitted_cifar100():</span> could not find function "get_fitted_cifar100"</span>
 <span class="r-in"><span><span class="va">mod</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> function (e1, e2)  .Primitive("%%")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model: "sequential"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ________________________________________________________________________________</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Layer (type)                       Output Shape                    Param #     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  conv2d_3 (Conv2D)                  (None, 32, 32, 32)              896         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  max_pooling2d_3 (MaxPooling2D)     (None, 16, 16, 32)              0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  conv2d_2 (Conv2D)                  (None, 16, 16, 64)              18496       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  max_pooling2d_2 (MaxPooling2D)     (None, 8, 8, 64)                0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  conv2d_1 (Conv2D)                  (None, 8, 8, 128)               73856       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  max_pooling2d_1 (MaxPooling2D)     (None, 4, 4, 128)               0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  conv2d (Conv2D)                    (None, 4, 4, 256)               295168      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  max_pooling2d (MaxPooling2D)       (None, 2, 2, 256)               0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  flatten (Flatten)                  (None, 1024)                    0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  dropout (Dropout)                  (None, 1024)                    0           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  dense_1 (Dense)                    (None, 512)                     524800      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  dense (Dense)                      (None, 100)                     51300       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total params: 964,516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trainable params: 964,516</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-trainable params: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ________________________________________________________________________________</span>
 </code></pre></div>
     </div>
   </div>
