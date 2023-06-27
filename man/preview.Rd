@@ -9,7 +9,7 @@ preview(iarr, ...)
 \arguments{
 \item{iarr}{ImageArray instance}
 
-\item{\dots}{not used}
+\item{\dots}{passed to plot.raster and thence to rasterImage; `interpolate=TRUE` can be useful}
 }
 \description{
 produce labeled 3x3 array of images via plot.raster

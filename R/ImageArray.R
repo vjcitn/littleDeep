@@ -56,14 +56,14 @@ ImageArray = function(arr, types) {
 
 #' produce labeled 3x3 array of images via plot.raster
 #' @param iarr ImageArray instance
-#' @param \dots not used
+#' @param \dots passed to plot.raster and thence to rasterImage; `interpolate=TRUE` can be useful
 #' @export
 preview = function(iarr, ...) {
   par(mfrow=c(3,3), mar=c(2,2,2,4))
   mx = max(getArray(iarr))
   tys = getTypes(iarr)
   for (i in 1:9) {
-    plot(as.raster(iarr@arr[i,,,], max=mx))
+    plot(as.raster(iarr@arr[i,,,], max=mx), ...)
     title(tys[i])
   }
   NULL

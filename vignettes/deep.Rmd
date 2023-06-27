@@ -1,5 +1,5 @@
 ---
-title: "Deep Learning excursion 0: Based on ISLR online book"
+title: "Deep Learning Excursion 0: Based on ISLR online book"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >

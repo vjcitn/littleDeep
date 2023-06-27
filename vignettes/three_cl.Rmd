@@ -1,10 +1,10 @@
 ---
-title: "ISLR's CNN for classifying a subset of CIFAR100 images"
+title: "Deep Learning Excursion 1: ISLR's CNN for classifying a subset of CIFAR100 images"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{ISLR's CNN for classifying a subset of CIFAR100 images}
+  %\VignetteIndexEntry{Deep Learning excursion 1: ISLR's CNN for classifying a subset of CIFAR100 images}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
