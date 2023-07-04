@@ -7,7 +7,7 @@
 #' @export
 show_jpg = function(fn, main="jpeg", ...) {
  img = jpeg::readJPEG(fn)
- plot(0,0, ylim=c(0,1), xlim=c(0,1), type="n", axes=FALSE, main=main)
+ plot(0,0, ylim=c(0,1), xlim=c(0,1), type="n", axes=FALSE, main=main, asp=1)
  graphics::rasterImage(img, 0, 0, 1, 1, ...)
 }
  
