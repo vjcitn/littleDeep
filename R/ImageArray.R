@@ -1,7 +1,7 @@
 
 #' container for 4D image array (index,x,y,z), typically (,32,32,3)
 #' @export
-setClass("ImageArray", representation(arr="array", types="character"))
+setClass("ImageArray", representation(arr="array", types="character", typelevels="character"))
 
 #' display information about ImageArray instance
 #' @export
@@ -36,7 +36,8 @@ setMethod("getTypes", "ImageArray", function(iarr) slot(iarr, "types"))
 #' @export
 ImageArray = function(arr, types) {
   stopifnot(length(types) == dim(arr)[1])
-  new("ImageArray", arr=arr, types=types)
+  typelevels = levels(factor(types))
+  new("ImageArray", arr=arr, types=types, typelevels=typelevels)
 }
 
 #nnnn = abind(myjpc, myjpt, along=1)
@@ -94,13 +95,16 @@ flattenToMatrix = function (iarr)
     mydatt
 }
 
+typelevels = function(iarr) slot(iarr, "typelevels")
+
 #' simple extraction with bracket
 #' @export
 setMethod("[", c("ImageArray", i="numeric",
     j="missing", drop="missing"), function(x,i,j,drop=FALSE) {
   arr = getArray(x)
+  tl = typelevels(x)
   stopifnot(i <= dim(arr)[1])
   ty = getTypes(x)
-  new("ImageArray", arr=arr[i,,,], types=ty[i])
+  new("ImageArray", arr=arr[i,,,,drop=FALSE], types=ty[i], typelevels=tl)
 })
 

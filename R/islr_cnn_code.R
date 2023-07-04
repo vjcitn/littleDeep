@@ -112,8 +112,9 @@ model_probs = function(model, iarr, roundto=3) {
    mean(drop(as.numeric(pred)) == drop(truth))
  omat = model %>% predict(getArray(iarr)) 
  omat = apply(omat, 2, round, roundto)
- ans = data.frame(omat)
- names(ans) = levels(factor(getTypes(iarr))) # factor was used in build
+ ty = typelevels(iarr)
+ ans = data.frame(matrix(omat, nc=length(ty)))
+ names(ans) = ty # factor was used in build
  ans
 }
 
