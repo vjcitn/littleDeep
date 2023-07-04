@@ -98,14 +98,23 @@ eval_model = function(model, iarr) {
 #' @param fitted islr_cnn model instance
 #' @param iarr ImageArray instance
 #' @return vector of fitted class probabilities
+#' @examples
+#' litsh = make_shape_iarr(nimages=3)
+#' preview(litsh)
+#' smod = load_shape_cnn()
+#' model_probs(smod, litsh)
 #' @export
-model_probs = function(model, iarr) {
+model_probs = function(model, iarr, roundto=3) {
  yclass = getTypes(iarr)
  yclass = as.numeric(factor(yclass))
  yclass = yclass - min(yclass) # to zero
  accuracy <- function(pred, truth)
    mean(drop(as.numeric(pred)) == drop(truth))
- model %>% predict(getArray(iarr)) 
+ omat = model %>% predict(getArray(iarr)) 
+ omat = apply(omat, 2, round, roundto)
+ ans = data.frame(omat)
+ names(ans) = levels(factor(getTypes(iarr))) # factor was used in build
+ ans
 }
 
 
@@ -135,9 +144,9 @@ build_array = function( shapefun = rancirc, nimages=2500, sidelength=64, depth=3
 #' @param nimages numeric(1)
 #' @export
 make_shape_iarr = function(nimages=2500) {
-  circarr = build_array( rancirc, sidelength=32, side_plane=32, npts=120 )
-  triarr = build_array( rantri, sidelength=32, side_plane=32, npts=40 )
-  quadarr = build_array( ranquad, sidelength=32, side_plane=32, npts=30 )
+  circarr = build_array( rancirc, nimages=nimages, sidelength=32, side_plane=32, npts=120 )
+  triarr = build_array( rantri, nimages=nimages, sidelength=32, side_plane=32, npts=40 )
+  quadarr = build_array( ranbox, nimages=nimages, sidelength=32, side_plane=32, npts=30 )
 
   allsh = abind(circarr, triarr, along=1)
   allsh = abind(allsh, quadarr, along=1)

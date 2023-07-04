@@ -4,7 +4,7 @@
 \alias{model_probs}
 \title{report estimated model properties for a given ImageArray}
 \usage{
-model_probs(model, iarr)
+model_probs(model, iarr, roundto = 3)
 }
 \arguments{
 \item{iarr}{ImageArray instance}
@@ -16,4 +16,10 @@ vector of fitted class probabilities
 }
 \description{
 report estimated model properties for a given ImageArray
+}
+\examples{
+litsh = make_shape_iarr(nimages=3)
+preview(litsh)
+smod = load_shape_cnn()
+model_probs(smod, litsh)
 }

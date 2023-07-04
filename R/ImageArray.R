@@ -97,7 +97,7 @@ flattenToMatrix = function (iarr)
 #' simple extraction with bracket
 #' @export
 setMethod("[", c("ImageArray", i="numeric",
-    j="missing", drop="missing"), function(x,i,j,drop) {
+    j="missing", drop="missing"), function(x,i,j,drop=FALSE) {
   arr = getArray(x)
   stopifnot(i <= dim(arr)[1])
   ty = getTypes(x)

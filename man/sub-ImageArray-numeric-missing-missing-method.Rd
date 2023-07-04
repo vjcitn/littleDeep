@@ -4,7 +4,7 @@
 \alias{[,ImageArray,numeric,missing,missing-method}
 \title{simple extraction with bracket}
 \usage{
-\S4method{[}{ImageArray,numeric,missing,missing}(x, i, j, drop)
+\S4method{[}{ImageArray,numeric,missing,missing}(x, i, j, drop = FALSE)
 }
 \description{
 simple extraction with bracket
