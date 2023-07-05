@@ -17,9 +17,14 @@ jpeg_shrinker = function() {
   )
  )
  server = function(input, output) {
-  mod = littleDeep::load_shape_cnn()
+  options(shiny.maxRequestSize=30*1024^2) 
+  modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
   output$pred = renderPrint({
-    model_probs(mod, ImageArray(process_jpg(input$jpeg$datapath), types="given", typelevels="given"))
+    tmp = process_jpg(input$jpeg$datapath)
+    arr = tmp@.Data #EBImage
+    arr = array(arr, dim=c(1,32,32,3))
+    iarr = ImageArray(arr, types="given", typelevels=modstuff$typelevels)
+    model_probs(modstuff$model, iarr)
   })
   output$given = renderPlot({
    req(input$jpeg)

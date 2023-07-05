@@ -50,6 +50,7 @@
 #' islr_cnn
 #' @export
 islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
+    ca = match.call()
     stopifnot(inherits(iarr, "ImageArray"))
     arr = getArray(iarr) # may be large
     d = dim(arr)[-1]
@@ -79,11 +80,20 @@ islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
     history <- model %>% fit(trainxy$train$x/denom, to_categorical(trainxy$train$y, 
         ncat), epochs = nEpochs, batch_size = batchSize, validation_split = valSplit)
     curver = packageVersion("littleDeep")
-    ans = list(model = model, history = history, typelevels=typelevels(iarr), littleDeepVersion=curver)
+    ans = list(model = model, history = history, typelevels=typelevels(iarr), littleDeepVersion=curver,
+       call=ca, date=Sys.Date())
     class(ans) = c("islr_cnn", "list")
     ans
 }
 
+#' print summary of islr_cnn object
+#' @export
+print.islr_cnn = function(x, ...) {
+ cat(sprintf("littleDeep %s ISLR CNN instance.\n", x$littleDeepVersion))
+ cat(" the call was:\n ")
+ print(x$call)
+ cat(" use $model to retrieve model, $history, and model_probs() for prediction.\n")
+}
 
 #' save a fitted model in a folder with hdf5 and list components
 #' @param islr_cnn instance of islr_cnn

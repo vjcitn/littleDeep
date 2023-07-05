@@ -33,10 +33,13 @@ setMethod("getTypes", "ImageArray", function(iarr) slot(iarr, "types"))
 #' constructor for ImageArray
 #' @param arr 4D array
 #' @param types character()
+#' @param typelevels optional character()
+#' in case ImageArray is a limited collection of images from a larger family 
+#' of possible types
 #' @export
-ImageArray = function(arr, types) {
+ImageArray = function(arr, types, typelevels) {
   stopifnot(length(types) == dim(arr)[1])
-  typelevels = levels(factor(types))
+  if (missing(typelevels)) typelevels = levels(factor(types))
   new("ImageArray", arr=arr, types=types, typelevels=typelevels)
 }
 

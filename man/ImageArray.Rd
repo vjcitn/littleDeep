@@ -4,12 +4,16 @@
 \alias{ImageArray}
 \title{constructor for ImageArray}
 \usage{
-ImageArray(arr, types)
+ImageArray(arr, types, typelevels)
 }
 \arguments{
 \item{arr}{4D array}
 
 \item{types}{character()}
+
+\item{typelevels}{optional character()
+in case ImageArray is a limited collection of images from a larger family 
+of possible types}
 }
 \description{
 constructor for ImageArray
