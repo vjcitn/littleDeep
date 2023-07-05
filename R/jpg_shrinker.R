@@ -11,11 +11,16 @@ jpeg_shrinker = function() {
    ),
    mainPanel(
     plotOutput("given", width="800px"),
-    plotOutput("shrunk", width="800px")
+    plotOutput("shrunk", width="800px"),
+    verbatimTextOutput("pred")
    )
   )
  )
  server = function(input, output) {
+  mod = littleDeep::load_shape_cnn()
+  output$pred = renderPrint({
+    model_probs(mod, ImageArray(process_jpg(input$jpeg$datapath), types="given", typelevels="given"))
+  })
   output$given = renderPlot({
    req(input$jpeg)
    validate(need(file.exists(input$jpeg$datapath),"please choose a jpg from your disk"))

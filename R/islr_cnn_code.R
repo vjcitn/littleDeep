@@ -45,7 +45,9 @@
 #' @param nEpochs numeric(1) used in call to fit for keras_model_sequential
 #' @param batchSize numeric(1) used in call to fit for keras_model_sequential
 #' @param valSplit numeric(1) used in call to fit for keras_model_sequential
-#' @return list with components model (compiled model) and history (of fit)
+#' @return list with components model (compiled model), history (of fit), and
+#' vector of unique type labels used for inputs, marked as an S3 class
+#' islr_cnn
 #' @export
 islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
     stopifnot(inherits(iarr, "ImageArray"))
@@ -76,8 +78,50 @@ islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
         metrics = c("accuracy"))
     history <- model %>% fit(trainxy$train$x/denom, to_categorical(trainxy$train$y, 
         ncat), epochs = nEpochs, batch_size = batchSize, validation_split = valSplit)
-    list(model = model, history = history)
+    curver = packageVersion("littleDeep")
+    ans = list(model = model, history = history, typelevels=typelevels(iarr), littleDeepVersion=curver)
+    class(ans) = c("islr_cnn", "list")
+    ans
 }
+
+
+#' save a fitted model in a folder with hdf5 and list components
+#' @param islr_cnn instance of islr_cnn
+#' @param folder character(1) must not exist
+#' @param objname character(1) defaults to "model.h5"
+#' @return folder and object name as path
+#' @export
+save_islr_cnn = function(islr_cnn, folder, objname="model.h5") {
+  stopifnot(!missing(folder))
+  if (!inherits(islr_cnn, "islr_cnn")) stop("need first input to inherit from islr_cnn")
+  stopifnot(!file.exists(folder))
+  dir.create(folder)
+  curd=getwd()
+  on.exit(setwd(curd))
+  setwd(folder)
+  save_model_hdf5(islr_cnn$model, objname)
+  save(islr_cnn, file="addons.rda")
+  paste0(folder, "/", objname)
+}
+
+#' restore fitted model and addons
+#' @param folder character(1) path to a previously saved islr_cnn
+#' @return instance of fitted islr_cnn with addons describing package version for
+#' creation
+#' @examples
+#' restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
+#' @export
+restore_islr_cnn = function(folder) {
+  mod = dir(folder, full=TRUE, pattern=".h5$")
+  ml = load_model_hdf5(mod)
+  z = file.path(folder, "addons.rda")
+  addons = load(z)
+  obj = get(addons)
+  obj$model = ml
+  obj
+}
+
+
 
 #' estimate accuracy of fitted model predictions for a given ImageArray
 #' @param fitted islr_cnn model instance
@@ -160,5 +204,5 @@ make_shape_iarr = function(nimages=2500) {
 #' load_shape_cnn()
 #' @export
 load_shape_cnn = function() {
-  keras::load_model_hdf5(system.file("extdata", "shapemod.h5", package="littleDeep"))
+  keras::load_model_hdf5(system.file("extdata", "shapemodf", "model.h5", package="littleDeep"))
 }

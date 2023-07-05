@@ -16,7 +16,9 @@ islr_cnn(iarr, nEpochs = 30, batchSize = 128, valSplit = 0.2)
 \item{valSplit}{numeric(1) used in call to fit for keras_model_sequential}
 }
 \value{
-list with components model (compiled model) and history (of fit)
+list with components model (compiled model), history (of fit), and
+vector of unique type labels used for inputs, marked as an S3 class
+islr_cnn
 }
 \description{
 use the CNN in Introduction to Statistical Learning with R on an ImageArray instance
