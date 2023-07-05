@@ -80,6 +80,13 @@ rr = islr_cnn( littrain )
 rr
 rr$model
 plot(rr$history)
+```
 
+To wrap up, we evaluate and have a look at predictions.
+
+```{r fin}
 eval_model(rr$model, littest)
+save_islr_cnn(rr, "cif3")
+model_probs(rr$model, littrain[1:9])
+preview(littrain[1:9])
 ```

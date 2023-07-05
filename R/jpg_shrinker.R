@@ -7,10 +7,11 @@ jpeg_shrinker = function() {
   sidebarLayout(
    sidebarPanel(
     helpText("jpeg_shrinker for littleDeep"),
+    radioButtons("model", "model", c("shapes", "cifar100", "cifar3")),
     fileInput("jpeg", "pick a jpeg"), width=2
    ),
    mainPanel(
-    tabSetPanel(
+    tabsetPanel(
      tabPanel("figs",
       plotOutput("given", width="800px"),
       plotOutput("shrunk", width="800px"),
@@ -23,14 +24,23 @@ jpeg_shrinker = function() {
  )
  server = function(input, output) {
   options(shiny.maxRequestSize=30*1024^2) 
-  modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
-  output$modtxt({
-    renderPrint(modstuff)
+  get_model = reactive({
+    if (input$model == "shapes")
+       modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
+    else if (input$model == "cifar100")
+       modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "cifrex", package="littleDeep"))
+    else if (input$model == "cifar3")
+       modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "cif3", package="littleDeep"))
+    modstuff
+    })
+  output$modtxt = renderPrint({
+    get_model()
     })
   output$pred = renderPrint({
     tmp = process_jpg(input$jpeg$datapath)
     arr = tmp@.Data #EBImage
     arr = array(arr, dim=c(1,32,32,3))
+    modstuff = get_model()
     iarr = ImageArray(arr, types="given", typelevels=modstuff$typelevels)
     model_probs(modstuff$model, iarr)
   })

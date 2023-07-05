@@ -81,7 +81,8 @@ filterByType = function(iarr, tvec) {
  tys = getTypes(iarr)
  stopifnot(all(tvec %in% tys))
  inds = which(tys %in% tvec)
- new("ImageArray", arr=getArray(iarr)[inds,,,], types=tys[inds])
+ tl = levels(factor(tvec))
+ new("ImageArray", arr=getArray(iarr)[inds,,,], types=tys[inds], typelevels=tl)
 }
 
 #' linearize data in an image to a single vector for each image in an 
