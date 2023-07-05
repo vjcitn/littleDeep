@@ -90,7 +90,7 @@ islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
 #' @export
 print.islr_cnn = function(x, ...) {
  cat(sprintf("littleDeep %s ISLR CNN instance.\n", x$littleDeepVersion))
- cat(" the call was:\n ")
+ cat(" the call was:\n    ")
  print(x$call)
  cat(" use $model to retrieve model, $history, and model_probs() for prediction.\n")
 }

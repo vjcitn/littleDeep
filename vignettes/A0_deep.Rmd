@@ -75,15 +75,15 @@ We fit the model according to the code in the appendix.  We
 can restore it from disk as follows:
 
 ```{r getmod}
-model = load_model_hdf5(system.file("extdata", "cifar100.keras.h5", package="littleDeep"))
+cifrun = restore_islr_cnn(system.file("extdata", "cifrex", package="littleDeep"))
+cifrun
+model = cifrun$model
 model
 ```
 
 The history of fitting was recorded:
 ```{r lkhist}
-data(cifar100_history)
-cifar100_history
-plot(cifar100_history)
+plot(cifrun$history)
 ```
 
 ## External validation accuracy

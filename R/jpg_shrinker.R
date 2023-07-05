@@ -10,15 +10,23 @@ jpeg_shrinker = function() {
     fileInput("jpeg", "pick a jpeg"), width=2
    ),
    mainPanel(
-    plotOutput("given", width="800px"),
-    plotOutput("shrunk", width="800px"),
-    verbatimTextOutput("pred")
+    tabSetPanel(
+     tabPanel("figs",
+      plotOutput("given", width="800px"),
+      plotOutput("shrunk", width="800px"),
+      verbatimTextOutput("pred")
+      ),
+     tabPanel("about", verbatimTextOutput("modtxt"))
+    )
    )
   )
  )
  server = function(input, output) {
   options(shiny.maxRequestSize=30*1024^2) 
   modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
+  output$modtxt({
+    renderPrint(modstuff)
+    })
   output$pred = renderPrint({
     tmp = process_jpg(input$jpeg$datapath)
     arr = tmp@.Data #EBImage

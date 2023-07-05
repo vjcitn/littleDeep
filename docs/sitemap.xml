@@ -4,6 +4,15 @@
     <loc>https://github.com/vjcitn/littleDeep/404.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/A0_deep.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/A1_three_cl.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/articles/A2_geom_shapes.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/articles/deep.html</loc>
   </url>
   <url>
@@ -29,6 +38,12 @@
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/ImageArray.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/SCE2ImageArray.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/build_array.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/chkthres.html</loc>
@@ -73,7 +88,16 @@
     <loc>https://github.com/vjcitn/littleDeep/reference/islr_cnn.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/jpeg_shrinker.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/load_jpeg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/load_shape_cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/make_shape_iarr.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/makecirc.html</loc>
@@ -85,10 +109,19 @@
     <loc>https://github.com/vjcitn/littleDeep/reference/maketri.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/model_probs.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/preview.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/print.islr_cnn.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/process_jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/ranbox.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/rancirc.html</loc>
@@ -100,7 +133,13 @@
     <loc>https://github.com/vjcitn/littleDeep/reference/rantri.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/restore_islr_cnn.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/run_cifar100.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/save_islr_cnn.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/show-ImageArray-method.html</loc>
@@ -110,5 +149,8 @@
   </url>
   <url>
     <loc>https://github.com/vjcitn/littleDeep/reference/sub-ImageArray-numeric-missing-missing-method.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/littleDeep/reference/train_cifar100.html</loc>
   </url>
 </urlset>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">littleDeep</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.15</span>
       </span>
     </div>
 
@@ -35,13 +35,13 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/deep.html">Deep Learning excursion 0: Based on ISLR online book</a>
+      <a href="../articles/A0_deep.html">Deep Learning Excursion 0: Based on ISLR online book</a>
     </li>
     <li>
-      <a href="../articles/geom_shapes.html">ISLR's CNN for classifying geometric shapes</a>
+      <a href="../articles/A1_three_cl.html">Deep Learning Excursion 1: ISLR's CNN for classifying a subset of CIFAR100 images</a>
     </li>
     <li>
-      <a href="../articles/three_cl.html">ISLR's CNN for classifying a subset of CIFAR100 images</a>
+      <a href="../articles/A2_geom_shapes.html">Deep Learning Excursion 2: ISLR's CNN for classifying geometric shapes</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -74,6 +74,14 @@
           <p><code><a href="ImageArray.html">ImageArray()</a></code> </p>
         </td>
         <td><p>constructor for ImageArray</p></td>
+      </tr><tr><td>
+          <p><code><a href="SCE2ImageArray.html">SCE2ImageArray()</a></code> </p>
+        </td>
+        <td><p>convert assay data from SCE to ImageArray</p></td>
+      </tr><tr><td>
+          <p><code><a href="build_array.html">build_array()</a></code> </p>
+        </td>
+        <td><p>make an array of JPEG-like data for invocations of a (presumably random) shape-generating function</p></td>
       </tr><tr><td>
           <p><code><a href="chkthres.html">chkthres()</a></code> </p>
         </td>
@@ -124,11 +132,23 @@ ImageArray instance</p></td>
         </td>
         <td><p>use the CNN in Introduction to Statistical Learning with R on an ImageArray instance</p></td>
       </tr><tr><td>
+          <p><code><a href="jpeg_shrinker.html">jpeg_shrinker()</a></code> </p>
+        </td>
+        <td><p>app for uploading and transforming a square jpeg</p></td>
+      </tr><tr><td>
           <p><code><a href="load_jpeg.html">load_jpeg()</a></code> </p>
         </td>
         <td><p>this function defines a 3-dimensional array with given dimensions
 and sets all elements to 1 except those with element indices given by x and y,
 which are set to zero</p></td>
+      </tr><tr><td>
+          <p><code><a href="load_shape_cnn.html">load_shape_cnn()</a></code> </p>
+        </td>
+        <td><p>load shape-trained CNN</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_shape_iarr.html">make_shape_iarr()</a></code> </p>
+        </td>
+        <td><p>produce an ImageArray of circles, triangles, quadrilaterals</p></td>
       </tr><tr><td>
           <p><code><a href="makecirc.html">makecirc()</a></code> </p>
         </td>
@@ -146,13 +166,25 @@ by input coordinates</p></td>
 specified numbers of points, forming a triangle with vertices given
 by input coordinates</p></td>
       </tr><tr><td>
+          <p><code><a href="model_probs.html">model_probs()</a></code> </p>
+        </td>
+        <td><p>report estimated model properties for a given ImageArray</p></td>
+      </tr><tr><td>
           <p><code><a href="preview.html">preview()</a></code> </p>
         </td>
         <td><p>produce labeled 3x3 array of images via plot.raster</p></td>
       </tr><tr><td>
+          <p><code><a href="print.islr_cnn.html">print(<i>&lt;islr_cnn&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>print summary of islr_cnn object</p></td>
+      </tr><tr><td>
           <p><code><a href="process_jpg.html">process_jpg()</a></code> </p>
         </td>
         <td><p>import, resize and rotate a JPEG that should have been produced in square mode</p></td>
+      </tr><tr><td>
+          <p><code><a href="ranbox.html">ranbox()</a></code> </p>
+        </td>
+        <td><p>crude approach to a random rectangle in 32x32 rectangle, can bleed over</p></td>
       </tr><tr><td>
           <p><code><a href="rancirc.html">rancirc()</a></code> </p>
         </td>
@@ -166,9 +198,17 @@ by input coordinates</p></td>
         </td>
         <td><p>produce coordinates of a random "triangle" in 64 x 64 plane</p></td>
       </tr><tr><td>
+          <p><code><a href="restore_islr_cnn.html">restore_islr_cnn()</a></code> </p>
+        </td>
+        <td><p>restore fitted model and addons</p></td>
+      </tr><tr><td>
           <p><code><a href="run_cifar100.html">run_cifar100()</a></code> </p>
         </td>
         <td><p>run the ISLR CNN for CIFAR100 data</p></td>
+      </tr><tr><td>
+          <p><code><a href="save_islr_cnn.html">save_islr_cnn()</a></code> </p>
+        </td>
+        <td><p>save a fitted model in a folder with hdf5 and list components</p></td>
       </tr><tr><td>
           <p><code><a href="show-ImageArray-method.html">show(<i>&lt;ImageArray&gt;</i>)</a></code> </p>
         </td>
@@ -181,6 +221,10 @@ by input coordinates</p></td>
           <p><code><a href="sub-ImageArray-numeric-missing-missing-method.html">`[`(<i>&lt;ImageArray&gt;</i>,<i>&lt;numeric&gt;</i>,<i>&lt;missing&gt;</i>,<i>&lt;missing&gt;</i>)</a></code> </p>
         </td>
         <td><p>simple extraction with bracket</p></td>
+      </tr><tr><td>
+          <p><code><a href="train_cifar100.html">train_cifar100()</a></code> </p>
+        </td>
+        <td><p>build islr_cnn instance trained on cifar100</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

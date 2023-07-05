@@ -4,7 +4,7 @@ author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Deep Learning Excursion 1: ISLR's CNN for classifying geometric shapes"
+  %\VignetteIndexEntry{Deep Learning Excursion 2: ISLR's CNN for classifying geometric shapes"
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
@@ -55,7 +55,7 @@ build_array = function( shapefun = rancirc, nimages=NIMAGES, sidelength=64, dept
 
 circarr = build_array( rancirc, sidelength=32, side_plane=32, npts=120 )
 triarr = build_array( rantri, sidelength=32, side_plane=32, npts=40 )
-quadarr = build_array( ranquad, sidelength=32, side_plane=32, npts=30 )
+quadarr = build_array( ranbox, sidelength=32, side_plane=32, npts=30 )
 
 allsh = abind(circarr, triarr, along=1)
 allsh = abind(allsh, quadarr, along=1)
@@ -66,7 +66,7 @@ shapes = ImageArray(allsh, types=rep(c("circle", "triangle", "quad"), each=NIMAG
 
 test_circarr = build_array( rancirc, sidelength=32, side_plane=32, npts=120 )
 test_triarr = build_array( rantri, sidelength=32, side_plane=32, npts=40 )
-test_quadarr = build_array( ranquad, sidelength=32, side_plane=32, npts=30 )
+test_quadarr = build_array( ranbox, sidelength=32, side_plane=32, npts=30 )
 
 test_allsh = abind(test_circarr, test_triarr, along=1)
 test_allsh = abind(test_allsh, test_quadarr, along=1)
@@ -77,8 +77,11 @@ preview(shapes[c(1:3, 2501:2503, 5001:5003)])
 
 # Fit the ISLR CNN on the training data
 
+We'll use a small number of epochs as the model seems
+capable of rapid learning for these inputs.
+
 ```{r lkcnn}
-fit_sh = islr_cnn( shapes )
+fit_sh = islr_cnn( shapes, nEpochs=5 )
 plot(fit_sh$history)
 eval_model(fit_sh$model, test_shapes)
 ```
