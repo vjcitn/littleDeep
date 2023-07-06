@@ -1,7 +1,7 @@
 Package: littleDeep
 Date: 2023-07-06
 Title: Small illustration of deep learning based on ISLR lab
-Version: 0.0.17
+Version: 0.0.18
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -25,8 +25,8 @@ BugReports: https://github.com/vjcitn/littleDeep/issues
 Config/reticulate:
   list(
     packages = list(
-      list(package = "keras", pip=TRUE),
-      list(package = "tensorflow", pip=TRUE),
-      list(package = "h5py", pip=TRUE)
+      list(package = "keras", version="2.12.0", pip=TRUE),
+      list(package = "tensorflow", version="2.12.0", pip=TRUE),
+      list(package = "h5py", version="3.6.0", pip=TRUE)
     )
   )
