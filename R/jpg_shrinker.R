@@ -37,6 +37,7 @@ jpeg_shrinker = function() {
     get_model()
     })
   output$pred = renderPrint({
+    req(input$jpeg)
     tmp = process_jpg(input$jpeg$datapath)
     arr = tmp@.Data #EBImage
     arr = array(arr, dim=c(1,32,32,3))
