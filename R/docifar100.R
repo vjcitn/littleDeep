@@ -1,3 +1,6 @@
+#' get cifar100 data from keras distribution
+#' @export
+dataset_cifar100 = function() keras::dataset_cifar100()
 
 #' build islr_cnn instance trained on cifar100
 #' @param saveto character(1) passed to save_islr_cnn, folder where hdf5 and additional metadata are stored

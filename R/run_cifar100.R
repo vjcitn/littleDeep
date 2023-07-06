@@ -50,3 +50,14 @@ model <- keras_model_sequential() %>%
  list(model=model, history=history)
 }
 
+.run_cifar100 = function(nEpochs=30, batchSize=128, valSplit=.2) {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .run_cifar100,
+                       nEpochs=nEpochs, batchSize=batchSize, valSplit=valSplit)
+    basiliskStop(cl)
+    ans
+}
+
+

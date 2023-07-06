@@ -86,15 +86,26 @@ The history of fitting was recorded:
 plot(cifrun$history)
 ```
 
+## ImageArray object production
+
+```{r makear}
+labs = cifmeta[[1]]$features$fine_label$names
+cifdata = dataset_cifar100()
+ciftrain = cifdata[["train"]]$x
+ciftest = cifdata[["test"]]$x
+ciflabels = labs[cifdata[["train"]]$y+1]
+ciftelabels = labs[cifdata[["test"]]$y+1]
+train = ImageArray(ciftrain, ciflabels)
+test = ImageArray(ciftest, ciftelabels)
+```
+
 ## External validation accuracy
 
 ISLR had some references to `predict_class` and `accuracy`
 that are now defunct.
 ```{r lkacc}
-accuracy <- function(pred, truth)
-  mean(drop(as.numeric(pred)) == drop(truth))
-testPreds <- model %>% predict(cifar100$test$x) %>% k_argmax()
-testPreds %>% accuracy(cifar100$test$y)
+eval_model( model, test )
+testPreds <- get_k_argmax(model, test)
 kp <- which(as.numeric(testPreds) == cifar100$test$y)[1:25]
 ```
 

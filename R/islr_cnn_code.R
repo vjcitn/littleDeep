@@ -87,6 +87,19 @@ islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
     ans
 }
 
+.islr_cnn = function(iarr, nEpochs=10, batchSize=128, valSplit=.2) {
+# set up process
+#    cl <- basiliskStart(ldeepenv,
+#                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .islr_cnn,
+                                  iarr=iarr, nEpochs=nEpochs, batchSize=batchSize,
+                                  valSplit=valSplit)
+#    basiliskStop(cl)
+    ans
+}
+
+
 #' print summary of islr_cnn object
 #' @export
 print.islr_cnn = function(x, ...) {
@@ -115,6 +128,16 @@ save_islr_cnn = function(islr_cnn, folder, objname="model.h5") {
   paste0(folder, "/", objname)
 }
 
+.save_islr_cnn = function(islr_cnn, folder, objname="model.h5") {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .save_islr_cnn,
+                                  islr_cnn=islr_cnn, folder=folder, objname=objname)
+    basiliskStop(cl)
+    ans
+}
+
 #' restore fitted model and addons
 #' @param folder character(1) path to a previously saved islr_cnn
 #' @return instance of fitted islr_cnn with addons describing package version for
@@ -130,6 +153,15 @@ restore_islr_cnn = function(folder) {
   obj = get(addons)
   obj$model = ml
   obj
+}
+.restore_islr_cnn = function(folder) {
+#    cl <- basiliskStart(ldeepenv,
+#                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .restore_islr_cnn,
+                                  folder=folder)
+#    basiliskStop(cl)
+    ans
 }
 
 
@@ -148,6 +180,36 @@ eval_model = function(model, iarr) {
  testPreds <- model %>% predict(getArray(iarr)) %>% k_argmax()
  testPreds %>% accuracy(yclass)
 }
+
+.eval_model = function(model, iarr) {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .eval_model,
+                                  model=model, iarr=iarr)
+    basiliskStop(cl)
+    ans
+}
+
+#' produce discrete predictions with fitted model predictions for a given ImageArray
+#' @param fitted islr_cnn model instance
+#' @param iarr ImageArray instance
+#' @export
+get_k_argmax = function(model, iarr) {
+ model %>% predict(getArray(iarr)) %>% k_argmax()
+}
+
+.get_k_argmax = function(model, iarr) {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .get_k_argmax,
+                                  model=model, iarr=iarr)
+    basiliskStop(cl)
+    ans
+}
+
+
 
 #' report estimated model properties for a given ImageArray
 #' @param fitted islr_cnn model instance
@@ -171,6 +233,16 @@ model_probs = function(model, iarr, roundto=3) {
  ans = data.frame(matrix(omat, nc=length(ty)))
  names(ans) = ty # factor was used in build
  ans
+}
+
+.model_probs = function(model, iarr, roundto=3) {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .model_probs,
+                                  model=model, iarr=iarr, roundto=roundto)
+    basiliskStop(cl)
+    ans
 }
 
 
@@ -217,3 +289,14 @@ make_shape_iarr = function(nimages=2500) {
 load_shape_cnn = function() {
   keras::load_model_hdf5(system.file("extdata", "shapemodf", "model.h5", package="littleDeep"))
 }
+
+.load_shape_cnn = function() {
+    cl <- basiliskStart(ldeepenv,
+                        testload = "keras")
+    ans = basilisk::basiliskRun(proc = cl,
+                                  fun = .load_shape_cnn)
+    basiliskStop(cl)
+    ans
+}
+
+
