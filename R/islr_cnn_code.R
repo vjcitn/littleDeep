@@ -50,6 +50,7 @@
 #' islr_cnn
 #' @export
 islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
+    reticulate::import("keras")
     ca = match.call()
     stopifnot(inherits(iarr, "ImageArray"))
     arr = getArray(iarr) # may be large

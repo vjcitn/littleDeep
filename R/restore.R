@@ -1,4 +1,5 @@
 restore = function(model="cifar3") {
+   reticulate::import("h5py")
    input = list()
    input$model = model
    if (input$model == "shapes")

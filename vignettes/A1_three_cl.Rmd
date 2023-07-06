@@ -73,10 +73,9 @@ preview(littrain)
 
 # Fit and assess
 
-This can take a few minutes on a CPU.  We use the default
-number of epochs.
+This can take a few minutes on a CPU.
 ```{r dofit}
-rr = islr_cnn( littrain )
+rr = islr_cnn( littrain, nEpochs=12 )
 rr
 rr$model
 plot(rr$history)
@@ -84,9 +83,8 @@ plot(rr$history)
 
 To wrap up, we evaluate and have a look at predictions.
 
-```{r fin}
 eval_model(rr$model, littest)
-save_islr_cnn(rr, "cif3")
+save_islr_cnn(rr, tempfile())
 model_probs(rr$model, littrain[1:9])
 preview(littrain[1:9])
 ```

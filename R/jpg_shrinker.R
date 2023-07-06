@@ -24,6 +24,8 @@ jpeg_shrinker = function() {
  )
  server = function(input, output) {
   options(shiny.maxRequestSize=30*1024^2) 
+  reticulate::import("keras")
+  reticulate::import("h5py")
   get_model = reactive({
     if (input$model == "shapes")
        modstuff = littleDeep::restore_islr_cnn(system.file("extdata", "shapemodf", package="littleDeep"))
