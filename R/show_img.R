@@ -4,6 +4,9 @@
 #' @param main character(1) title defaults to 'jpeg'
 #' @param \dots passed to graphics::rasterImage
 #' @return rasterImage is called
+#' @examples
+#' apl = system.file("jpegs", "oneBigApple.jpg", package="littleDeep")
+#' show_jpg(apl)
 #' @export
 show_jpg = function(fn, main="jpeg", ...) {
  img = jpeg::readJPEG(fn)
@@ -45,10 +48,10 @@ monochromize = function(fn, img=NULL, thresh, rel=">",
 }
  
 #' app to demonstrate filtering of a jpeg
-#' @importFrom OpenImageR rotateImage
 #' @import shiny
 #' @export
 chkthres = function() {
+if (!requireNamespace("OpenImage")) stop("install OpenImage to use this package")
  ui = fluidPage(
   sidebarLayout(
    sidebarPanel(width=2,

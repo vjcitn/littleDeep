@@ -19,3 +19,7 @@ rasterImage is called
 \description{
 produce raster image of a jpg file
 }
+\examples{
+apl = system.file("jpegs", "oneBigApple.jpg", package="littleDeep")
+show_jpg(apl)
+}

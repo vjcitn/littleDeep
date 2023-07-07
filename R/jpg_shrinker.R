@@ -17,7 +17,8 @@ jpeg_shrinker = function() {
       plotOutput("shrunk", width="800px"),
       verbatimTextOutput("pred")
       ),
-     tabPanel("about", verbatimTextOutput("modtxt"))
+     tabPanel("about", verbatimTextOutput("modtxt"),
+         helpText("---"), verbatimTextOutput("modtxt2"))
     )
    )
   )
@@ -37,6 +38,9 @@ jpeg_shrinker = function() {
     })
   output$modtxt = renderPrint({
     get_model()
+    })
+  output$modtxt2 = renderPrint({
+    get_model()$model
     })
   output$pred = renderPrint({
     req(input$jpeg)
