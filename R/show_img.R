@@ -10,20 +10,14 @@
 #' @export
 show_jpg = function(fn, main="jpeg", ...) {
  img = jpeg::readJPEG(fn)
- plot(0,0, ylim=c(0,1), xlim=c(0,1), type="n", axes=FALSE, main=main, asp=1)
- graphics::rasterImage(img, 0, 0, 1, 1, ...)
+ plot(as.raster(img), main=main)
 }
  
-#zero_out = function(img, plane=1) {
-# img[,,plane] = 0
-#}
-#
-#keep_plane = function(img, plane=1) {
-# img[,,setdiff(1:3,plane)] = 0
-#}
 
 show_channels = function(fn, ...) {
  img = jpeg::readJPEG(fn)
+ opar = par(no.readonly=TRUE)
+ on.exit(par(opar))
  par(mfrow=c(2,2))
  show_jpg(fn, main="full")
  for (i in 1:3) {

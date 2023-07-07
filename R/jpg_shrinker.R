@@ -8,13 +8,17 @@ jpeg_shrinker = function() {
    sidebarPanel(
     helpText("jpeg_shrinker for littleDeep"),
     radioButtons("model", "model", c("shapes", "cifar100", "cifar3")),
-    fileInput("jpeg", "pick a jpeg"), width=2
+    fileInput("jpeg", "pick a jpeg"),
+    checkboxInput("interpolate", "interpolate", FALSE), width=2
    ),
    mainPanel(
     tabsetPanel(
      tabPanel("figs",
-      plotOutput("given", width="800px"),
-      plotOutput("shrunk", width="800px"),
+           fluidRow(
+             splitLayout(cellWidths = c(400,400), 
+                     plotOutput("given"), 
+                     plotOutput("shrunk"),
+                            )),
       verbatimTextOutput("pred")
       ),
      tabPanel("about", verbatimTextOutput("modtxt"),
@@ -54,14 +58,14 @@ jpeg_shrinker = function() {
   output$given = renderPlot({
    req(input$jpeg)
    validate(need(file.exists(input$jpeg$datapath),"please choose a jpg from your disk"))
-   littleDeep::show_jpg(input$jpeg$datapath, interpolate=FALSE)
-   }, width=900)
+   littleDeep::show_jpg(input$jpeg$datapath, interpolate=input$interpolate)
+   }, width=400)
   output$shrunk = renderPlot({
    req(input$jpeg)
    validate(need(file.exists(input$jpeg$datapath),"please choose a jpg from your disk"))
    tmp = littleDeep::process_jpg(input$jpeg$datapath)
-   plot(as.raster(tmp), interpolate=FALSE)
-   }, width=900)
+   plot(as.raster(tmp), interpolate=input$interpolate)
+   }, width=400)
   }
  runApp(list(ui=ui, server=server))
 }

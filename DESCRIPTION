@@ -1,7 +1,7 @@
 Package: littleDeep
 Date: 2023-07-06
 Title: Small illustration of deep learning based on ISLR lab
-Version: 0.0.21
+Version: 0.0.22
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -16,7 +16,7 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.2), dplyr, keras, magrittr
 Suggests: knitr, testthat, BiocStyle, abind
-Imports: raster, shiny, jpeg, EBImage
+Imports: terra, shiny, jpeg, EBImage
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.2.3
