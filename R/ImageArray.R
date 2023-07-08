@@ -36,6 +36,14 @@ setMethod("getTypes", "ImageArray", function(iarr) slot(iarr, "types"))
 #' @param typelevels optional character()
 #' in case ImageArray is a limited collection of images from a larger family 
 #' of possible types
+#' @examples
+#'   cifmeta = jsonlite::fromJSON(system.file("extdata", "cif.json", package="littleDeep"))
+#'   labs = cifmeta[[1]]$features$fine_label$names
+#'   cifdata = dataset_cifar100()
+#'   ciftrain = cifdata[[1]]$x
+#'   ciflabels = labs[cifdata[[1]]$y+1]
+#'   ciftrainArr = ImageArray(ciftrain, ciflabels)
+#'   preview(ciftrainArr[1:9])
 #' @export
 ImageArray = function(arr, types, typelevels) {
   stopifnot(length(types) == dim(arr)[1])

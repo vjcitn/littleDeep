@@ -18,3 +18,12 @@ of possible types}
 \description{
 constructor for ImageArray
 }
+\examples{
+  cifmeta = jsonlite::fromJSON(system.file("extdata", "cif.json", package="littleDeep"))
+  labs = cifmeta[[1]]$features$fine_label$names
+  cifdata = dataset_cifar100()
+  ciftrain = cifdata[[1]]$x
+  ciflabels = labs[cifdata[[1]]$y+1]
+  ciftrainArr = ImageArray(ciftrain, ciflabels)
+  preview(ciftrainArr[1:9])
+}

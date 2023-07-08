@@ -2,7 +2,7 @@
 #' app for uploading and transforming a square jpeg
 #' @import shiny
 #' @export
-jpeg_shrinker = function() {
+jpg_shrinker = function() {
  ui = fluidPage(
   sidebarLayout(
    sidebarPanel(
@@ -19,6 +19,7 @@ jpeg_shrinker = function() {
                      plotOutput("given"), 
                      plotOutput("shrunk"),
                             )),
+      helpText("Class membership scores:"),
       verbatimTextOutput("pred")
       ),
      tabPanel("about", verbatimTextOutput("modtxt"),

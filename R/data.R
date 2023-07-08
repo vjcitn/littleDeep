@@ -6,3 +6,19 @@
 #' data(cifar100_history)
 #' plot(cifar100_history) # will use keras
 "cifar100_history"
+
+#' random collection of 2000 images from the test data of the cifar100 (100 categories) dataset
+#' @docType data
+#' @format ImageArray
+#' @examples
+#' data(ciftest2k)
+#' preview(ciftest2k) # will use keras
+"ciftest2k"
+
+#' random collection of 1000 images from the training data of the cifar100 (100 categories) dataset
+#' @docType data
+#' @format ImageArray
+#' @examples
+#' data(ciftrain1k)
+#' preview(ciftrain1k) # will use keras
+"ciftrain1k"
