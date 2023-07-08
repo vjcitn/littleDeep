@@ -235,6 +235,30 @@ model_probs = function(model, iarr, roundto=3) {
  ans
 }
 
+#' make a nice string representation of types and scores for a single image
+#' @param fitted islr_cnn model instance
+#' @param iarr1 ImageArray with one image
+#' @param n numeric(1) number of scores to format, default to 3
+#' @examples
+#' litsh = make_shape_iarr(nimages=3)
+#' preview(litsh)
+#' smod = load_shape_cnn()
+#' scores_string(smod, litsh[1])
+#' @export
+scores_string = function (fitted, iarr1, n = 3) 
+{
+    stopifnot(dim(getArray(iarr1))[1] == 1)
+    sc = model_probs(fitted, iarr1)
+    sc = sort(unlist(sc), decreasing = TRUE)
+    str = "%s(%.3f)"
+    str = rep(str, n)
+    for (i in seq_len(n)) {
+        str[i] = sprintf(str[i], names(sc)[i], round(sc[i], 3))
+    }
+    ans = paste(str, collapse = ", ")
+    ans
+}
+
 .model_probs = function(model, iarr, roundto=3) {
     cl <- basiliskStart(ldeepenv,
                         testload = "keras")

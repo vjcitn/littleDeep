@@ -12,6 +12,23 @@ show_jpg = function(fn, main="jpeg", ...) {
  img = jpeg::readJPEG(fn)
  plot(as.raster(img), main=main)
 }
+
+#' a magick-based solution to presenting jpg data, includes rotation capability
+#' @importFrom magick image_read image_rotate image_ggplot
+#' @param fn character(1) path to jpg
+#' @param main character(1) title defaults to 'jpeg'
+#' @examples
+#' apl = system.file("jpegs", "oneBigApple.jpg", package="littleDeep")
+#' show_jpg(apl)
+#' @export
+show_jpg2 = function (fn, main = "jpeg", degrees = 0, ...) 
+{
+    library(ggplot2)
+    img = magick::image_read(fn)
+    img = magick::image_rotate(img, degrees = degrees)
+    magick::image_ggplot(img) + ggtitle(main)
+}
+
  
 
 show_channels = function(fn, ...) {

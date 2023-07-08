@@ -16,7 +16,7 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.2), dplyr, keras, magrittr
 Suggests: knitr, testthat, BiocStyle, abind
-Imports: terra, shiny, jpeg, EBImage
+Imports: terra, shiny, jpeg, EBImage, magick
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.2.3
