@@ -244,6 +244,10 @@ model_probs = function(model, iarr, roundto=3) {
 #' preview(litsh)
 #' smod = load_shape_cnn()
 #' scores_string(smod, litsh[1])
+#' purp = system.file("jpegs", "newpurple.jpg", package="littleDeep")
+#' c3 = restore_islr_cnn(system.file("extdata", "cif3", package="littleDeep"))
+#' ia = jpeg2iarr(purp, "rose", c3$typelevels)
+#' scores_string(c3$model, ia)
 #' @export
 scores_string = function (fitted, iarr1, n = 3) 
 {

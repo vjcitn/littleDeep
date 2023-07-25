@@ -56,6 +56,7 @@ jpg_shrinker = function() {
     iarr = ImageArray(arr, types="given", typelevels=modstuff$typelevels)
     mm = model_probs(modstuff$model, iarr)
     mm[, order(as.numeric(data.matrix(mm[1,])), decreasing=TRUE)]
+    scores_string(modstuff$model, iarr)
   })
   output$given = renderPlot({
    req(input$jpeg)

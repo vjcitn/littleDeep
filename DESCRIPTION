@@ -1,7 +1,7 @@
 Package: littleDeep
 Date: 2023-07-06
 Title: Small illustration of deep learning based on ISLR lab
-Version: 0.0.24
+Version: 0.0.26
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -11,11 +11,12 @@ Authors@R:
     )
 Description: Small illustration of deep learning based on ISLR lab.  The
 	point is to encapsulate and render checkable some of the basic
-	code in lab 10.9.3 of James, Witten, Hastie and Tibshirani.
+	code in lab 10.9.3 of James, Witten, Hastie and Tibshirani.  
+	Can use ornelles/EBImageExtra if available for Sobel edge detection.
 License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.2), dplyr, keras, magrittr
-Suggests: knitr, testthat, BiocStyle, abind
+Suggests: knitr, testthat, BiocStyle, abind, EBImageExtra
 Imports: terra, shiny, jpeg, EBImage, magick
 VignetteBuilder: knitr
 biocViews: Infrastructure
