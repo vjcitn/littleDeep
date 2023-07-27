@@ -20,4 +20,6 @@ ore = runSobel(ciftrain1k[4])
 par(mfrow=c(2,2))
 plotOne(ciftrain1k[4])
 plotOne(ore, transpose=TRUE)
+plotOne(ore, transpose=TRUE, interpolate=FALSE)
+plotOne(ciftrain1k[4], interpolate=FALSE)
 }

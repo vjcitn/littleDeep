@@ -1,7 +1,7 @@
 Package: littleDeep
 Date: 2023-07-06
 Title: Small illustration of deep learning based on ISLR lab
-Version: 0.0.28
+Version: 0.0.29
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),

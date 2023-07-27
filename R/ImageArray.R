@@ -1,6 +1,6 @@
 
 #' container for 4D image array (index,x,y,z), typically (,32,32,3)
-#' @import Biobase
+#' @importFrom Biobase selectSome
 #' @export
 setClass("ImageArray", representation(arr="array", types="character", typelevels="character"))
 

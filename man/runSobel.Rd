@@ -15,5 +15,11 @@ perform edge detection via Sobel algorithm
 \examples{
 data(ciftrain1k)
 ore = runSobel(ciftrain1k[4])
-plotOne(ore)
+opar = par(no.readonly=TRUE)
+par(mfrow=c(2,2))
+plotOne(ciftrain1k[4])
+plotOne(ore, transpose=TRUE)
+plotOne(ore, transpose=TRUE, interpolate=FALSE)
+plotOne(ciftrain1k[4], interpolate=FALSE)
+par(opar)
 }
