@@ -21,7 +21,7 @@ makeEBImage = function(iarr1) {
 #' data(ciftrain1k)
 #' ore = runSobel(ciftrain1k[4])
 #' opar = par(no.readonly=TRUE)
-#' par(mfrow=c(2,2))
+#' par(mfrow=c(2,2), mar=c(1,1,1,1))
 #' plotOne(ciftrain1k[4])
 #' plotOne(ore, transpose=TRUE)
 #' plotOne(ore, transpose=TRUE, interpolate=FALSE)
