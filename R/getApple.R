@@ -15,10 +15,18 @@ getApple = function() {
 applePath = function() {
    system.file("jpegs", "newapple.jpg", package="littleDeep")
 }
+
 #' get path to flower image
 #' @export
 flowerPath = function() {
    system.file("jpegs", "newpurple.jpg", package="littleDeep")
+}
+
+#' get path to activated mast cell image
+#' @note downloaded from http://cellimagelibrary.org/images/222
+#' @export
+mastPath = function() {
+   system.file("jpegs", "mast.jpg", package="littleDeep")
 }
 
 #' produce an ImageArray for any single jpeg
