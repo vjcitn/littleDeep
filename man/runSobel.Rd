@@ -15,5 +15,5 @@ perform edge detection via Sobel algorithm
 \examples{
 data(ciftrain1k)
 ore = runSobel(ciftrain1k[4])
-EBImage::display(ore, method="raster") # small!
+plotOne(ore)
 }

@@ -20,7 +20,7 @@ makeEBImage = function(iarr1) {
 #' @examples
 #' data(ciftrain1k)
 #' ore = runSobel(ciftrain1k[4])
-#' EBImage::display(ore, method="raster") # small!
+#' plotOne(ore)
 #' @export
 runSobel = function(iarr1) {
  if (!requireNamespace("EBImageExtra")) stop("install ornelles/EBImageExtra from github to use this function")
