@@ -17,9 +17,11 @@ plot a length-1 ImageArray using as.raster
 \examples{
 data(ciftrain1k)
 ore = runSobel(ciftrain1k[4])
-par(mfrow=c(2,2))
+opar = par(no.readonly=TRUE)
+par(mfrow=c(2,2),mar=c(1,1,1,1))
 plotOne(ciftrain1k[4])
 plotOne(ore, transpose=TRUE)
 plotOne(ore, transpose=TRUE, interpolate=FALSE)
 plotOne(ciftrain1k[4], interpolate=FALSE)
+par(opar)
 }
