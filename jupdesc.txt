@@ -1,0 +1,73 @@
+ML with R/.Bioconductor in Jupyter environment.
+
+Our objective in this workspace, as of November 2023, is to illustrate the
+definition and use of a simple convolutional neural network (CNN) that can
+be used to classify images that have a very specific format -- JPEGs with
+32 x 32 planar format, implying a 32 x 32 x 3 array.
+
+There are several phases to be understood
+
+- training images are collected, transformed to a uniform format, and tagged with one of 100 categories
+- a statistical model with a very large number of parameters is fit ("trained" with a prespecified number of "epochs")
+- the model is evaluated for accuracy on a new set of uniformly formatted and tagged "test" images
+- the "model weights" can be stored for use as a classification tool with estimated operating characteristics that should be accurate for the "population of training units"
+
+The code for the CNN is derived from [Introduction to Statistical Learning with R](https://statlearning.com)
+(pdf of book can be downloaded [here](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf.download.html)).
+
+We will illustrate the operation of the CNN using a package at `https://github.com/vjcitn/littleDeep`.  Here's a code
+segment that shows how a CNN can be coded using functions in the keras package.
+
+```
+   model <- keras_model_sequential() %>% layer_conv_2d(filters = 32,
+        kernel_size = c(3, 3), padding = "same", activation = "relu",
+        input_shape = c(32, 32, 3)) %>% layer_max_pooling_2d(pool_size = c(2,
+        2)) %>% layer_conv_2d(filters = 64, kernel_size = c(3,
+        3), padding = "same", activation = "relu") %>% layer_max_pooling_2d(pool_size = c(2,
+        2)) %>% layer_conv_2d(filters = 128, kernel_size = c(3,
+        3), padding = "same", activation = "relu") %>% layer_max_pooling_2d(pool_size = c(2,
+        2)) %>% layer_conv_2d(filters = 256, kernel_size = c(3,
+        3), padding = "same", activation = "relu") %>% layer_max_pooling_2d(pool_size = c(2,
+        2)) %>% layer_flatten() %>% layer_dropout(rate = 0.5) %>%
+        layer_dense(units = 512, activation = "relu") %>% layer_dense(units = ncat,
+        activation = "softmax")
+    model %>% compile(loss = "categorical_crossentropy", optimizer = optimizer_rmsprop(),
+        metrics = c("accuracy"))
+    history <- model %>% fit(trainxy$train$x/denom, to_categorical(trainxy$train$y,
+        ncat), epochs = nEpochs, batch_size = batchSize, validation_split = valSplit)
+    curver = packageVersion("littleDeep")
+    ans = list(model = model, history = history, typelevels=typelevels(iarr), littleDeepVersion=curver,
+       call=ca, date=Sys.Date())
+    class(ans) = c("islr_cnn", "list")
+```
+The `model` component of this code segment is slightly modified from page 449 of the
+June 2023 edition of the ISLR monograph.   A rough schematic of the data flow is:
+
+![schema](https://github.com/vjcitn/littleDeep/blob/main/Screenshot%20from%202023-11-11%2006-57-58.png?raw=true)
+
+The keras package summarizes the model coded above as
+```
+Model: "sequential"
+________________________________________________________________________________
+ Layer (type)                       Output Shape                    Param #     
+================================================================================
+ conv2d_3 (Conv2D)                  (None, 32, 32, 32)              896         
+ max_pooling2d_3 (MaxPooling2D)     (None, 16, 16, 32)              0           
+ conv2d_2 (Conv2D)                  (None, 16, 16, 64)              18496       
+ max_pooling2d_2 (MaxPooling2D)     (None, 8, 8, 64)                0           
+ conv2d_1 (Conv2D)                  (None, 8, 8, 128)               73856       
+ max_pooling2d_1 (MaxPooling2D)     (None, 4, 4, 128)               0           
+ conv2d (Conv2D)                    (None, 4, 4, 256)               295168      
+ max_pooling2d (MaxPooling2D)       (None, 2, 2, 256)               0           
+ flatten (Flatten)                  (None, 1024)                    0           
+ dropout (Dropout)                  (None, 1024)                    0           
+ dense_1 (Dense)                    (None, 512)                     524800      
+ dense (Dense)                      (None, 3)                       1539        
+================================================================================
+Total params: 914,755
+Trainable params: 914,755
+Non-trainable params: 0
+________________________________________________________________________________
+```
+
+
