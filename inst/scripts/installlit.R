@@ -1,0 +1,8 @@
+needed = c("littleDeep", "raster", "rhdf5", "remotes" )
+avail = rownames(installed.packages())
+msng = setdiff(needed, avail)
+if ("remotes" %in% msng) install.packages("remotes")
+if ("littleDeep" %in% msng) BiocManager::install("vjcitn/littleDeep")
+avail = rownames(installed.packages())
+msng = setdiff(needed, avail)
+if (length(msng)>0) BiocManager::install(msng)
