@@ -50,7 +50,7 @@
 #' islr_cnn
 #' @export
 islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
-    reticulate::import("keras")
+    reticulate::import("keras3")
     ca = match.call()
     stopifnot(inherits(iarr, "ImageArray"))
     arr = getArray(iarr) # may be large
@@ -90,7 +90,7 @@ islr_cnn = function(iarr, nEpochs=30, batchSize=128, valSplit=.2) {
 .islr_cnn = function(iarr, nEpochs=10, batchSize=128, valSplit=.2) {
 # set up process
 #    cl <- basiliskStart(ldeepenv,
-#                        testload = "keras")
+#                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .islr_cnn,
                                   iarr=iarr, nEpochs=nEpochs, batchSize=batchSize,
@@ -130,7 +130,7 @@ save_islr_cnn = function(islr_cnn, folder, objname="model.h5") {
 
 .save_islr_cnn = function(islr_cnn, folder, objname="model.h5") {
     cl <- basiliskStart(ldeepenv,
-                        testload = "keras")
+                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .save_islr_cnn,
                                   islr_cnn=islr_cnn, folder=folder, objname=objname)
@@ -156,7 +156,7 @@ restore_islr_cnn = function(folder) {
 }
 .restore_islr_cnn = function(folder) {
 #    cl <- basiliskStart(ldeepenv,
-#                        testload = "keras")
+#                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .restore_islr_cnn,
                                   folder=folder)
@@ -183,7 +183,7 @@ eval_model = function(model, iarr) {
 
 .eval_model = function(model, iarr) {
     cl <- basiliskStart(ldeepenv,
-                        testload = "keras")
+                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .eval_model,
                                   model=model, iarr=iarr)
@@ -201,7 +201,7 @@ get_k_argmax = function(model, iarr) {
 
 .get_k_argmax = function(model, iarr) {
     cl <- basiliskStart(ldeepenv,
-                        testload = "keras")
+                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .get_k_argmax,
                                   model=model, iarr=iarr)
@@ -265,7 +265,7 @@ scores_string = function (fitted, iarr1, n = 3)
 
 .model_probs = function(model, iarr, roundto=3) {
     cl <- basiliskStart(ldeepenv,
-                        testload = "keras")
+                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .model_probs,
                                   model=model, iarr=iarr, roundto=roundto)
@@ -315,12 +315,12 @@ make_shape_iarr = function(nimages=2500) {
 #' load_shape_cnn()
 #' @export
 load_shape_cnn = function() {
-  keras::load_model_hdf5(system.file("extdata", "shapemodf", "model.h5", package="littleDeep"))
+  keras3::load_model_hdf5(system.file("extdata", "shapemodf", "model.h5", package="littleDeep"))
 }
 
 .load_shape_cnn = function() {
     cl <- basiliskStart(ldeepenv,
-                        testload = "keras")
+                        testload = "keras3")
     ans = basilisk::basiliskRun(proc = cl,
                                   fun = .load_shape_cnn)
     basiliskStop(cl)

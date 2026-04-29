@@ -30,7 +30,7 @@ jpg_shrinker = function() {
  )
  server = function(input, output) {
   options(shiny.maxRequestSize=30*1024^2) 
-  reticulate::import("keras")
+  reticulate::import("keras3")
   reticulate::import("h5py")
   get_model = reactive({
     if (input$model == "shapes")
