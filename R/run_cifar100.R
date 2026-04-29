@@ -8,9 +8,10 @@
 #' @return a list with elements history and model
 #' @note Takes 15+ minutes on a CPU, with default settings.  This
 #' is derived from Introduction to Statistical Learning with R by
-#' G. James, D. Witten, T. Hastie, R. Tibshirani.
+#' G. James, D. Witten, T. Hastie, R. Tibshirani, 1e.
 #' @examples
-#' r1 = run_cifar100(nEpochs=3)
+#' suppress_keras_warnings()
+#' r1 = run_cifar100(nEpochs=8)
 #' plot(r1$history)
 #' @export
 run_cifar100 = function(nEpochs=30, batchSize=128, valSplit=.2) {
